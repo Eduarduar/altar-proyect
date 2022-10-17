@@ -1,0 +1,97 @@
+@import url("reset.css");
+
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@300&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
+body {
+  font-family: 'Bitter', serif;
+  min-height: 100vh;
+  background: linear-gradient(to top ,rgb(153, 78, 3), rgb(33, 0, 80));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-screen {
+  width: 450px;
+  padding: 4rem;
+  border-radius: 10px;
+  position: relative;
+}
+
+.main-screen-logo {
+  margin-bottom: 1.5rem;
+}
+
+.main-screen-logo img {
+  width: 280px;
+}
+
+.main-screen-logo,
+.main-screen-header,
+.main-screen-buttom {
+  text-align: center;
+}
+
+.main-screen-header{
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.main-screen-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.main-screen-button button {
+  background: #000;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: background .5s;
+}
+
+.main-screen-button button:hover {
+  background: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+}
+
+.main-screen a {
+  text-decoration: none;
+  color: rgb(13, 149, 194);
+}
+
+.main-screen a:hover {
+  text-decoration: underline;
+}
+
+.main-screen-footer {
+  margin-top: 1.5rem;
+  font-size: calc(1rem * .8);
+  text-align: center;
+  color: #fff;
+}
+
+@media (max-width: 760px){
+
+  body {
+    padding: 2rem 0;
+
+  }
+
+  .main-screen {
+    width: 300px;
+    padding: 2rem;
+  }
+
+  .main-screen-header h1 {
+    font-size: 2.8rem;
+  }
+
+}

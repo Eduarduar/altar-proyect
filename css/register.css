@@ -1,0 +1,137 @@
+@import url("reset.css");
+
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@300&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(to top ,rgb(153, 78, 3), rgb(33, 0, 80));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-card {
+  width: 450px;
+  padding: 4rem;
+  background: rgba(0, 0, 0, 0.509);
+  border-radius: 10px;
+  position: relative;
+  color: #fff;
+}
+
+.register-card::before {
+  content: '';
+  position: absolute;
+  background: #fff;
+}
+
+.register-card-logo {
+  margin-bottom: 1.5rem;
+}
+
+.register-card-logo img {
+  width: 100px;
+  user-select: none;
+}
+
+.register-card-logo,
+.register-card-header,
+.register-card-buttom {
+  text-align: center;
+}
+
+.register-card a {
+  text-decoration: none;
+  color: rgb(13, 149, 194);
+}
+
+.register-card a:hover {
+  text-decoration: underline;
+}
+
+.register-card-header{
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.register-card-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: .6rem;
+  user-select: none;
+}
+
+.register-card-header h1 + div {
+  font-size: calc(1rem * .8);
+  opacity: .8;
+}
+
+.register-card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.register-card-form .form-item {
+  position: relative;
+}
+
+.register-card-form .form-item .form-item-icon {
+  position: absolute;
+  top: 0.82rem;
+  left: 1.4rem;
+  font-size: 1.3rem;
+  user-select: none;
+  opacity: .8;
+}
+
+.register-card-footer {
+  margin-top: 1.5rem;
+  font-size: calc(1rem * .8);
+}
+
+.register-card input[type="text"],
+.register-card input[type="password"],
+.register-card input[type="number"],
+.register-card input[type="email"] {
+  border: none;
+  outline: none;
+  background: rgb(53, 53, 53);
+  padding: 1rem 1.5rem;
+  padding-left: calc(1rem *3.5);
+  border-radius: 100px;
+  width: 100%;
+  transition: background .5s;
+  color: #fff;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { 
+    -moz-appearance:textfield;
+}
+
+.register-card input:focus {
+  background: rgb(91, 91, 91);
+}
+
+.register-card button {
+  background: #000;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: background .3s;
+}
+
+.register-card button:hover {
+    background: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+}
