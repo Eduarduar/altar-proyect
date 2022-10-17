@@ -49,7 +49,7 @@
 
                         <div class="altar-card-item">
 
-                            <button id="btnFoto1">agregar foto</button>
+                            <button id="btnFoto1">Add photo</button>
 
                             <div class="altar-card-item-text-container">
 
