@@ -1,3 +1,10 @@
+<?php
+
+    include_once './db/queries.php';
+    $consultor = new consultas();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -36,22 +43,22 @@
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">badge</span>
-                        <input type="text" placeholder="Enter your name" required autofocus>
+                        <input type="text" placeholder="Enter your name" required>
                     </div>
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">badge</span>
-                        <input type="text" placeholder="Enter your last name" required autofocus>
+                        <input type="text" placeholder="Enter your last name" required>
                     </div>
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">call</span>
-                        <input type="number" placeholder="Enter your telephone" required autofocus>
+                        <input type="number" placeholder="Enter your telephone" required>
                     </div>
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">mail</span>
-                        <input type="email" placeholder="Enter your email" required autofocus>
+                        <input type="email" placeholder="Enter your email" required>
                     </div>
 
                     <div class="form-item">
@@ -61,7 +68,7 @@
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">lock</span>
-                        <input type="password" placeholder="Confirm your password" required>
+                        <input type="password" placeholder="Confirm your password"  required>
                     </div>
 
                     <button type="submit">Confirm</button>
