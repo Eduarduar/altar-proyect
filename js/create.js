@@ -1,6 +1,7 @@
 //VARIABLES
-let btnClose = document.getElementById('close');
-let btnAdd = document.getElementById('add');
+const btnClose = document.getElementById('close');
+const btnAdd = document.getElementById('add');
+const btnSave = document.getElementById('save');
 let NoItems = 0;
 let NoContainers = 0;
 
@@ -46,8 +47,23 @@ const addCardItem = function () { // función queagrega un nuevo item o contened
     }
 }
 
+const save = function () {
+    let add = document.querySelector('.altar-card-item-button-add-container span');
+    add.parentNode.removeChild(add);
+
+    let save = document.querySelector('#save');
+    save.parentElement.removeChild(save);
+    
+    let textarea = document.querySelectorAll('.altar-card-item-text-container');
+    textarea.forEach((e) => {
+        e.classList.add('active');
+    });
+}
+
 // Listeners
 
 btnAdd.addEventListener('click', addCardItem);
 
-btnClose.addEventListener('click',close);
+btnClose.addEventListener('click', close);
+
+btnSave.addEventListener('click', save);

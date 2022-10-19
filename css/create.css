@@ -103,7 +103,7 @@ body::-webkit-scrollbar-thumb {
     padding: 0.3rem;
     min-width: 250px;
     max-width: 500px;
-    min-height: 100px;
+    min-height: 30px;
     max-height: 320px;
     background: rgb(34, 34, 34);
     border-radius: 10px;
@@ -111,6 +111,7 @@ body::-webkit-scrollbar-thumb {
     box-shadow: 0 1px 1px rgb(0, 0, 0)inset, 0 0 1px rgb(0, 0, 0);
     outline: 0 none;
     color: #fff;
+    font-size: 1.2rem;
     transition: 0.3s background;
 }
 
@@ -147,7 +148,7 @@ body::-webkit-scrollbar-thumb {
     border: 2px solid rgb(0, 108, 13);
     background:rgb(8, 155, 6) ;
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 300;
     letter-spacing: 2px;
     text-transform: uppercase;
