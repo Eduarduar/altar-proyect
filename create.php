@@ -59,7 +59,7 @@
 
                     <div class="altar-card-item-button-save-container">
 
-                        <button>Save</button>
+                        <button id="save"><span class="material-symbols-outlined">save</span></button>
 
                     </div>
 
