@@ -36,12 +36,12 @@
                 <form action="#" class="login-card-form">
 
                     <div class="form-item">
-                        <span class="form-item-icon material-symbols-outlined">mail</span>
-                        <input type="email" placeholder="Enter your email" required autofocus>
+                        <span class="form-item-icon material-symbols-outlined">person</span>
+                        <input type="text" placeholder="Enter your username" required autofocus>
                     </div>
 
                     <div class="form-item">
-                        <span class="form-item-icon material-symbols-outlined">lock</span>
+                        <span class="form-item-icon material-symbols-outlined lock">lock</span>
                         <input type="password" placeholder="Enter your password" required>
                     </div>
 
