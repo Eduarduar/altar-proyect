@@ -11,6 +11,26 @@ body {
   justify-content: center;
 }
 
+.register-card-button-exit {
+  position: absolute;
+  padding: 1rem;
+  z-index: 2;
+}
+
+.register-card-button-exit span {
+  color: #fff;
+  padding: 0.3rem;
+  font-size: 1rem;
+  background: rgba(112, 112, 112, 0.5);
+  border-radius: 100px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.register-card-button-exit span:hover {
+  background: rgba(148, 148, 148, 0.5);
+}
+
 .register-card {
   width: 450px;
   padding: 4rem;

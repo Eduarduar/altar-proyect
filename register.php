@@ -19,6 +19,12 @@
     <body>
 
         <div class="register-card-container">
+            
+            <div class="register-card-button-exit">
+
+                <span id="close" class="material-symbols-outlined">close</span>
+
+            </div>
 
             <div class="register-card">
 
@@ -77,7 +83,7 @@
                 
                 <div class="register-card-footer">
 
-                Do you already have an <a href="#">account</a>?
+                Do you already have an <a href="./login">account</a>?
 
                 </div>
 
@@ -85,6 +91,8 @@
             </div>
 
         </div>
+
+        <script src="./js/register.js"></script>
         
     </body>
 </html>
