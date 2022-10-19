@@ -90,7 +90,7 @@ body::-webkit-scrollbar-thumb {
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 300;
-    transition: 0.3s;
+    transition: 0.3s; 
     margin-bottom: 2rem;
     user-select: none;
 }

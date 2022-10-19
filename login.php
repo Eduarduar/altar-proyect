@@ -13,6 +13,12 @@
 
         <div class="login-card-container">
 
+            <div class="login-card-button-exit">
+
+                <span id="close" class="material-symbols-outlined">close</span>
+
+            </div>
+
             <div class="login-card">
 
                 <div class="login-card-logo">
@@ -45,7 +51,7 @@
                 
                 <div class="login-card-footer">
 
-                    You do not have an <a href="#">account</a>?
+                    You do not have an <a href="./register">account</a>?
 
                 </div>
 
@@ -53,6 +59,8 @@
             </div>
 
         </div>
+
+        <script src="./js/login.js"></script>
         
     </body>
 </html>

@@ -15,7 +15,7 @@
 
             <div class="altar-card-button-exit">
 
-                <span class="material-symbols-outlined">close</span>
+                <span id="close" class="material-symbols-outlined">close</span>
 
             </div>
 
@@ -27,55 +27,31 @@
 
                 </div>
 
-                <div class="altar-card-header">
+                <div id="header" class="altar-card-header">
 
-                    <div class="altar-card-item-container1">
+                    <div id="containers">
 
-                        <div class="altar-card-item">
+                        <div class="altar-card-item-container">
 
-                            <button id="btnFoto1">Add photo</button>
+                            <div class="altar-card-item">
 
-                            <div class="altar-card-item-text-container">
+                                <button class="btnFoto">Add photo</button>
 
-                                <textarea name="text1" id="text1"></textarea>
+                                <div class="altar-card-item-text-container">
+
+                                    <textarea name="text" class="text"></textarea>
 
                             </div>
 
                         </div>
 
                     </div>
-
-                    <div class="altar-card-item-container flex">
-
-                        <div class="altar-card-item">
-
-                            <button id="btnFoto1">Add photo</button>
-
-                            <div class="altar-card-item-text-container">
-
-                                <textarea name="text1" id="text1"></textarea>
-
-                            </div>
-
-                        </div>
-
-                        <div class="altar-card-item">
-
-                            <button id="btnFoto1">Add photo</button>
-
-                            <div class="altar-card-item-text-container">
-
-                                <textarea name="text1" id="text1"></textarea>
-
-                            </div>
-
-                        </div>
 
                     </div>
 
                     <div class="altar-card-item-button-add-container">
 
-                        <span class="material-symbols-outlined">add</span>
+                        <span id="add" class="material-symbols-outlined">add</span>
 
                     </div>
 
@@ -92,6 +68,8 @@
             </div>
 
         </div>
+
+        <script src="./js/create.js"></script>
         
     </body>
 </html>
