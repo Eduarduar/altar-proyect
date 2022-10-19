@@ -14,7 +14,7 @@
         <link rel="shortcut icon" href="./img/Calavera_kawaii_dibujo_png.png" type="image/x-icon">
         <link rel="stylesheet" href="./css/register.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <title>Register</title>
+        <title>Sing up</title>
     </head>
     <body>
 
@@ -36,7 +36,7 @@
 
                 <div class="register-card-header">
 
-                    <h1>Register</h1>
+                    <h1>Sign up</h1>
 
                 </div>
 
@@ -68,13 +68,13 @@
                     </div>
 
                     <div class="form-item">
-                        <span class="form-item-icon material-symbols-outlined">lock</span>
-                        <input type="password" placeholder="Enter your password" required>
+                        <span id="lock2" class="form-item-icon material-symbols-outlined lock">lock</span>
+                        <input type="password" name="pass2" placeholder="Enter your password" required>
                     </div>
 
                     <div class="form-item">
-                        <span class="form-item-icon material-symbols-outlined">lock</span>
-                        <input type="password" placeholder="Confirm your password"  required>
+                        <span id="lock" class="form-item-icon material-symbols-outlined lock">lock</span>
+                        <input type="password" name="pass" placeholder="Confirm your password"  required>
                     </div>
 
                     <button type="submit">Confirm</button>

@@ -28,12 +28,12 @@
                 </div>
 
                 <div class="main-screen-button">
-                    <button type="button" id="button">Create your altar</button>
+                    <button type="button" id="button">Sign in</button>
                 </div>
 
                 <div class="main-screen-footer">
 
-                    you have an <a href="./login">account</a>?
+                    You do not have an <a href="./register">account</a>?
 
                 </div>
 
