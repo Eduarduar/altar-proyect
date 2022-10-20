@@ -1,4 +1,4 @@
-@import url("reset.css");
+@import url("./reset.css");
 
 @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@300&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
@@ -114,11 +114,10 @@ body {
 
 .register-card input[type="text"],
 .register-card input[type="password"],
-.register-card input[type="number"],
 .register-card input[type="email"] {
   border: none;
   outline: none;
-  background: rgb(53, 53, 53);
+  background: rgb(57, 48, 60);
   padding: 1rem 1.5rem;
   padding-left: calc(1rem *3.5);
   border-radius: 100px;
@@ -137,8 +136,28 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 
+.register-card input.invalid {
+  background: rgb(122, 48, 60);
+}
+
+.register-card input.valid {
+  background: rgb(57, 108, 60);
+}
+
 .register-card input:focus {
-  background: rgb(91, 91, 91);
+  background: rgb(86, 75, 105);
+}
+
+.form-item input + .text-invalid {
+  display: none;
+}
+
+.form-item input.invalid + .text-invalid {
+  display: block;
+  color: rgb(122, 48, 60) !important;
+  font-size: 1rem;
+  margin: 0px;
+  text-align: center;
 }
 
 .register-card button {

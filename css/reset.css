@@ -80,3 +80,7 @@ meter {
 :where([draggable="true"]) {
     -webkit-user-drag: element;
 }
+
+input {
+    color-scheme: dark;
+}

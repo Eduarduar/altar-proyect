@@ -71,12 +71,12 @@ const validarForm = (e) => {
 
 const validarPassword = (campo) => {
     if ((document.getElementById(`${campo}`).value == document.getElementById(`${campo + "2"}`).value) && ((document.getElementById(`${campo}`).value != "") && (document.getElementById(`${campo + "2"}`).value != ""))){
-        document.getElementById(`${campo}`).classList.remove('is-invalid');
-        document.getElementById(`${campo}`).classList.add('is-valid');
+        document.getElementById(`${campo}`).classList.remove('invalid');
+        document.getElementById(`${campo}`).classList.add('valid');
         return true;
     }else{
-        document.getElementById(`${campo}`).classList.remove('is-valid');
-        document.getElementById(`${campo}`).classList.add('is-invalid');
+        document.getElementById(`${campo}`).classList.remove('valid');
+        document.getElementById(`${campo}`).classList.add('invalid');
         return false; 
     }
 }

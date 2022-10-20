@@ -45,6 +45,7 @@
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">person</span>
                         <input type="text" name="user" id="user" placeholder="Enter your user name" required autofocus>
+                        <p class="text-invalid">NO Espacios, max 25. min 5.</p>
                     </div>
 
                     <div class="form-item">
@@ -55,11 +56,13 @@
                     <div class="form-item">
                         <span id="lock2" class="form-item-icon material-symbols-outlined lock">lock</span>
                         <input type="password" name="pass2" id="pass2" placeholder="Enter your password" required>
+                        <p class="text-invalid">max 20. min 8.</p>
                     </div>
 
                     <div class="form-item">
                         <span id="lock" class="form-item-icon material-symbols-outlined lock">lock</span>
                         <input type="password" name="pass" id="pass" placeholder="Confirm your password"  required>
+                        <p class="text-invalid">La contraseña no coinside.</p>
                     </div>
 
                     <button type="button">Confirm</button>
