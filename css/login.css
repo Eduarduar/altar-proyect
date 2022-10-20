@@ -117,7 +117,7 @@ body {
 .login-card input[type="email"] {
   border: none;
   outline: none;
-  background: rgb(53, 53, 53);
+  background: rgb(57, 48, 60);
   padding: 1rem 1.5rem;
   padding-left: calc(1rem *3.5);
   border-radius: 100px;
@@ -126,8 +126,28 @@ body {
   color: #fff;
 }
 
+.login-card input.invalid {
+  background: rgb(122, 48, 60);
+}
+
+.login-card input.valid {
+  background: rgb(57, 108, 60);
+}
+
 .login-card input:focus {
-  background: rgb(91, 91, 91);
+  background: rgb(86, 75, 105);
+}
+
+.form-item input + .text-invalid {
+  display: none;
+}
+
+.form-item input.invalid + .text-invalid {
+  display: block;
+  color: rgb(122, 48, 60) !important;
+  font-size: 1rem;
+  margin: 0px;
+  text-align: center;
 }
 
 .login-card button {
