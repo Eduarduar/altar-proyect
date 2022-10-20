@@ -79,13 +79,15 @@ body::-webkit-scrollbar-thumb {
     margin: 0 1rem;
 }
 
-.altar-card-item button {
+.btnFoto {
     border: 4px dashed #000;
     border-radius: 10px;
     background: rgb(34, 34, 34);
     color: #fff;
-    min-height: 220px;
+    min-height: 80px;
+    max-height: 80px;
     min-width: 200px;
+    max-width: 400px;
     font-size: 1.2rem;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -93,6 +95,15 @@ body::-webkit-scrollbar-thumb {
     transition: 0.3s; 
     margin-bottom: 2rem;
     user-select: none;
+}
+
+.img {
+    border: 4px solid #000;
+    border-radius: 10px;
+    min-height: 80px;
+    max-height: 400px;
+    min-width: 80px;
+    max-width: 350px;
 }
 
 .altar-card-item button:hover {

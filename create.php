@@ -27,7 +27,13 @@
 
                 </div>
 
-                <div id="header" class="altar-card-header">
+                <form method="POST" enctype="multipart/form-data" id="header" class="altar-card-header">
+
+                    <div class="hide" style="display:none;">  <!-- este contenedor contiene todos los inputs file para evitar que moleste a la vista y se puedan cargar las imagenes -->
+
+                        <input type="file" name="imagen0" id="imagen0" onchange="vista_preliminar(event);">
+
+                    </div>
 
                     <div id="containers">
 
@@ -35,17 +41,17 @@
 
                             <div class="altar-card-item">
 
-                                <button class="btnFoto">Add photo</button>
+                                <button type="button" class="btnFoto" id="img-foto-imagen0"><label for="imagen0">Add photo</label></button>
 
                                 <div class="altar-card-item-text-container">
 
                                     <textarea name="text" class="text"></textarea>
 
+                                </div>
+
                             </div>
 
                         </div>
-
-                    </div>
 
                     </div>
 
@@ -63,7 +69,7 @@
 
                     </div>
 
-                </div>
+                </form>
 
             </div>
 

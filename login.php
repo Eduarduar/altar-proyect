@@ -7,7 +7,7 @@
         <link rel="shortcut icon" href="./img/Calavera_kawaii_dibujo_png.png" type="image/x-icon">
         <link rel="stylesheet" href="./css/login.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <title>Login</title>
+        <title>Sign in</title>
     </head>
     <body>
 
@@ -29,7 +29,7 @@
 
                 <div class="login-card-header">
 
-                    <h1>Sing in</h1>
+                    <h1>Sign in</h1>
 
                 </div>
 
