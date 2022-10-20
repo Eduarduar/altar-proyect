@@ -40,44 +40,29 @@
 
                 </div>
 
-                <form action="#" class="register-card-form">
+                <form action="#" method="POST" class="register-card-form">
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">person</span>
-                        <input type="text" placeholder="Enter your user name" required autofocus>
-                    </div>
-
-                    <div class="form-item">
-                        <span class="form-item-icon material-symbols-outlined">badge</span>
-                        <input type="text" placeholder="Enter your name" required>
-                    </div>
-
-                    <div class="form-item">
-                        <span class="form-item-icon material-symbols-outlined">badge</span>
-                        <input type="text" placeholder="Enter your last name" required>
-                    </div>
-
-                    <div class="form-item">
-                        <span class="form-item-icon material-symbols-outlined">call</span>
-                        <input type="number" placeholder="Enter your telephone" required>
+                        <input type="text" name="user" id="user" placeholder="Enter your user name" required autofocus>
                     </div>
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">mail</span>
-                        <input type="email" placeholder="Enter your email" required>
+                        <input type="email" name="email" id="email" placeholder="Enter your email" required>
                     </div>
 
                     <div class="form-item">
                         <span id="lock2" class="form-item-icon material-symbols-outlined lock">lock</span>
-                        <input type="password" name="pass2" placeholder="Enter your password" required>
+                        <input type="password" name="pass2" id="pass2" placeholder="Enter your password" required>
                     </div>
 
                     <div class="form-item">
                         <span id="lock" class="form-item-icon material-symbols-outlined lock">lock</span>
-                        <input type="password" name="pass" placeholder="Confirm your password"  required>
+                        <input type="password" name="pass" id="pass" placeholder="Confirm your password"  required>
                     </div>
 
-                    <button type="submit">Confirm</button>
+                    <button type="button">Confirm</button>
 
                 </form>
                 
