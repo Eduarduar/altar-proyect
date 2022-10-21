@@ -3,6 +3,16 @@
     include_once './db/queries.php';
     $consultor = new consultas();
 
+    $result = true;
+
+    if (isset($_POST['user']) && isset($_POST['email']) && isset($_POST['pass2']) && isset($_POST['pass'])){
+        if ($consultor->insertUser($_POST['user'],$_POST['email'],$_POST['pass2'])){
+            header('location: ./login');
+        }else{
+            $result = false;
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -38,9 +48,23 @@
 
                     <h1>Sign up</h1>
 
+                    <?php
+                    
+                        if ($result == false){
+                            ?>
+                                <div class="register-card-header-error">
+
+                                    <p>Su usuario o email ya esta registrado</p>
+
+                                </div>
+                            <?php
+                        }
+                    
+                    ?>
+
                 </div>
 
-                <form action="#" method="POST" class="register-card-form">
+                <form action="" method="POST" class="register-card-form">
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">person</span>
