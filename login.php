@@ -37,17 +37,17 @@
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">person</span>
-                        <input type="text" placeholder="Enter your username" required autofocus>
-                        <p class="text-invalid">El usuario o la contraseña no coinsiden</p>
+                        <input type="text" name="user" id="user" placeholder="Enter your username" required>
+                        <p class="text-invalid">No signos, No espacios, min. 5, max. 25</p>
                     </div>
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined lock">lock</span>
-                        <input type="password" placeholder="Enter your password" required>
-                        <p class="text-invalid">El usuario o la contraseña no coinsiden</p>
+                        <input type="password" name="pass" id="pass" placeholder="Enter your password" required>
+                        <p class="text-invalid">max. 20</p>
                     </div>
 
-                    <button type="submit">Sing in</button>
+                    <button type="button">Sing in</button>
 
                 </form>
                 

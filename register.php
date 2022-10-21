@@ -68,7 +68,7 @@
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">person</span>
-                        <input type="text" name="user" id="user" placeholder="Enter your user name" required autofocus>
+                        <input type="text" name="user" id="user" placeholder="Enter your user name" required>
                         <p class="text-invalid">NO Espacios, max 25. min 5.</p>
                     </div>
 
