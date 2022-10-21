@@ -8,7 +8,7 @@ let NoContainers = 0; // contador de contenedores agregados
 //Funciones
 
 const close = function () { // función que regresa a la pagina index
-    window.location = '../altar';
+    window.location = '../altar/saves';
 }
 
 const addCardItem = function () { // función queagrega un nuevo item o contenedor con item segun sea necesario
