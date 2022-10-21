@@ -2,8 +2,6 @@ let btnClose = document.getElementById('close');
 const btnLocks = document.querySelectorAll('.lock');
 const txtPass = document.querySelectorAll("input[type='password']");
 const btnSubmit = document.querySelector('.register-card-form button');
-
-
 const form = document.querySelector('.register-card-form');
 const inputs = document.querySelectorAll('.register-card-form input');
 
@@ -97,6 +95,15 @@ const validarCampo = (exprecion, value, campo) => {
 const submit = function () {
     if (registro.user == true && registro.email == true && registro.passN == true && registro.passC == true){
         form.submit();
+    }else{
+        let user = document.getElementById('user');
+        let email = document.getElementById('email');
+        let passN = document.getElementById('pass2');
+        let passC = document.getElementById('pass');
+        validarCampo(expresiones.usuario, user.value, user.id);
+        validarCampo(expresiones.correo, email.value, email.id);
+        validarCampo(expresiones.password, passN.value, passN.id);
+        validarPassword(passC.id);
     }
 }
 
