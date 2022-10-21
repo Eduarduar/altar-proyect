@@ -1,6 +1,7 @@
 let btnClose = document.getElementById('close');
 const btnLocks = document.querySelectorAll('.lock');
 const txtPass = document.querySelectorAll("input[type='password']");
+const btnSubmit = document.querySelector('.register-card-form button');
 
 
 const form = document.querySelector('.register-card-form');
@@ -93,6 +94,12 @@ const validarCampo = (exprecion, value, campo) => {
     }
 }
 
+const submit = function () {
+    if (registro.user == true && registro.email == true && registro.passN == true && registro.passC == true){
+        form.submit();
+    }
+}
+
 btnLocks.forEach((span) => {
    span.addEventListener('click',alternateHidePass); 
 });
@@ -103,3 +110,5 @@ inputs.forEach((input) => {
     input.addEventListener('keyup',validarForm);
     input.addEventListener('blur',validarForm);
 });
+
+btnSubmit.addEventListener('click',submit);
