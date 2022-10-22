@@ -41,6 +41,28 @@
             return $this->connect()->query("SELECT * FROM altar WHERE user = $id");
         }
 
+        public function confirmarAltarById ($id, $idUser) {
+            $query = $this->connect()->prepare("SELECT * FROM altar WHERE ID = $id AND user = $idUser");
+            $query->execute();
+            if ($query->rowCount()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function getNameAltar($id){
+            return $this->connect()->query("SELECT name FROM altar WHERE ID = $id");
+        }
+
+        public function getImagenes($id) {
+            return $this->connect()->query("SELECT * FROM images WHERE altar = $id");
+        }
+
+        public function getTexts($id){
+            return $this->connect()->query("SELECT * FROM text WHERE altar = $id");
+        }
+
     }
 
 ?>

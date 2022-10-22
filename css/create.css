@@ -55,6 +55,23 @@ body::-webkit-scrollbar-thumb {
     position: relative;
 }
 
+.altar-card-title-container {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.altar-card-title-container input{
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+    color: #fff;
+}
+
+.altar-card-title-container input::placeholder {
+    color: rgb(86, 86, 86);
+}
+
 .altar-card-logo,
 .altar-card-header {
     text-align: center;
