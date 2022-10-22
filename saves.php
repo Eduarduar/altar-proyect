@@ -1,3 +1,21 @@
+<?php
+
+    session_start();
+
+    include_once './db/queries.php';
+    $consultar = new consultas();
+
+    if (!isset($_SESSION['user']) and !isset($_SESSION['id'])){
+        header('location: ./db/logout');
+    }
+
+    if (!$consultar->comprobarUserByUserAndId($_SESSION['user'], $_SESSION['id'])){
+        header('location: ./db/logout');
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,19 +61,33 @@
 
                 <div class="saves-item-container">
 
-                    <div class="save-item">
+                    <?php
 
-                        <div class="save-item-icon-container">
+                        $items = $consultar->getAltaresByUser($_SESSION['id']);
 
-                            <span class="material-symbols-outlined">description</span>
+                        foreach ($items as $item){
 
-                        </div>
+                            ?>
 
-                        <div class="save-item-name">Nombre del altar</div>
+                                <div id="<?php echo $item['ID']; ?>" class="save-item">
 
-                    </div>
+                                    <div id="<?php echo $item['ID']; ?>" class="save-item-icon-container">
 
-                    <div id="add" class="save-item">
+                                        <span id="<?php echo $item['ID']; ?>" class="material-symbols-outlined">description</span>
+
+                                    </div>
+
+                                    <div id="<?php echo $item['ID']; ?>" class="save-item-name"><?php echo $item['name']; ?></div>
+
+                                </div>
+
+                            <?php
+
+                        }
+                    
+                    ?>
+
+                    <div id="add"  class="item-add">
 
                         <div class="save-item-icon-container">
 

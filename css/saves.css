@@ -91,7 +91,8 @@ body::-webkit-scrollbar-thumb {
     margin-top: 20px;
 }
 
-.save-item {
+.save-item,
+.item-add {
     color: #fff;
     float: left;
     margin: 0;
