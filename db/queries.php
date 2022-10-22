@@ -26,6 +26,21 @@
             }
         }
 
+        public function comprobarUserByUserAndId($user, $id){
+            $query = $this->connect()->prepare("SELECT * FROM users WHERE user = '$user' and ID = $id");
+            $query->execute();
+            if ($query->rowCount()){
+                return true;
+            }else{
+                return false;
+            }
+
+        }
+
+        public function getAltaresByUser($id) {
+            return $this->connect()->query("SELECT * FROM altar WHERE user = $id");
+        }
+
     }
 
 ?>
