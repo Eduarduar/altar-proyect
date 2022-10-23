@@ -1,3 +1,11 @@
+<?php
+
+    if (isset($_SESSION['id']) and isset($_SESSION['user'])){
+    header('location: ./saves');
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

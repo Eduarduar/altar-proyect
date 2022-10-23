@@ -1,5 +1,11 @@
 <?php
 
+    session_start();
+
+    if (isset($_SESSION['id']) and isset($_SESSION['user'])){
+        header('location: ./saves');
+    }
+
     include_once './db/queries.php';
     $consultor = new consultas();
 
