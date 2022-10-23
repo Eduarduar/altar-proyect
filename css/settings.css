@@ -5,7 +5,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
-  background: linear-gradient(to top ,rgb(153, 78, 3), rgb(33, 0, 80));
+  background: linear-gradient(to top ,rgb(33, 0, 80),rgb(6, 6, 6));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,13 +15,13 @@ body {
     display: none;
 }
 
-.configuration-button-exit {
+.settings-button-exit {
   position: absolute;
   padding: 1rem;
   z-index: 2;
 }
 
-.configuration-button-exit span {
+.settings-button-exit span {
   color: #fff;
   padding: 0.3rem;
   font-size: 1rem;
@@ -31,35 +31,35 @@ body {
   cursor: pointer;
 }
 
-.configuration-button-exit span:hover {
+.settings-button-exit span:hover {
   background: rgba(148, 148, 148, 0.5);
 }
 
-.configuration,
+.settings,
 .change-pass {
   width: 450px;
   padding: 4rem;
-  background: rgba(0, 0, 0, 0.509);
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   position: relative;
   color: #fff;
 }
 
-.configuration::before,
+.settings::before,
 .change-pass::before {
   content: '';
   position: absolute;
   background: #fff;
 }
 
-.configuration-header,
+.settings-header,
 .change-pass-header {
     font-size: 1.8rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
 }
 
-.configuration-header h1,
+.settings-header h1,
 .change-pass-header h1 {
     font-size: 2rem;
     font-weight: 600;
@@ -67,25 +67,25 @@ body {
     user-select: none;
 }
 
-.configuration-header h1 + div,
+.settings-header h1 + div,
 .change-pass-header h1 + div {
     font-size: calc(1rem * .8);
     opacity: .8;
 }
 
-.configuration-form,
+.settings-form,
 .change-pass-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
-.configuration-form .form-item,
+.settings-form .form-item,
 .change-pass-form .form-item {
     position: relative;
 }
 
-.configuration-form .form-item .form-item-icon,
+.settings-form .form-item .form-item-icon,
 .change-pass-form .form-item .form-item-icon {
     position: absolute;
     top: 0.82rem;
@@ -95,9 +95,9 @@ body {
     opacity: .8;
 }
 
-.configuration input[type="text"],
-.configuration input[type="password"],
-.configuration input[type="email"],
+.settings input[type="text"],
+.settings input[type="password"],
+.settings input[type="email"],
 .change-pass input[type="text"],
 .change-pass input[type="password"],
 .change-pass input[type="email"] {
@@ -122,17 +122,17 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 
-.configuration input.invalid,
+.settings input.invalid,
 .change-pass input.invalid {
     background: rgb(122, 48, 60);
 }
 
-.configuration input.valid,
+.settings input.valid,
 .change-pass input.valid {
     background: rgb(57, 108, 60);
 }
 
-.configuration input:focus,
+.settings input:focus,
 .change-pass input:focus {
     background: rgb(86, 75, 105);
 }
@@ -155,7 +155,7 @@ input[type=number] {
     margin-top: 10px;
 }
 
-.configuration button,
+.settings button,
 .change-pass button {
   background: rgb(56, 56, 56);
   border: none;
@@ -168,13 +168,13 @@ input[type=number] {
   transition: background .3s;
 }
 
-.configuration button:hover,
+.settings button:hover,
 .change-pass button:hover {
     background: rgba(49, 49, 49, 0.7);
     cursor: pointer;
 }
 
-.configuration-form button,
+.settings-form button,
 .change-pass-form button {
   background: #000;
   border: none;
@@ -186,7 +186,7 @@ input[type=number] {
   transition: background .3s;
 }
 
-.configuration-form button:hover,
+.settings-form button:hover,
 .change-pass-form button:hover {
     background: rgba(0, 0, 0, 0.70);
     cursor: pointer;

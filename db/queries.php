@@ -37,6 +37,14 @@
 
         }
 
+        public function getDataUser($id){
+            return $this->connect()->query("SELECT user, email FROM users WHERE ID = $id");
+        }
+
+        public function updateUser($id, $user, $email){
+            $this->connect()->query("UPDATE users SET user = '$user', email = '$email' WHERE ID = $id");
+        }
+
         public function getAltaresByUser($id) {
             return $this->connect()->query("SELECT * FROM altar WHERE user = $id");
         }

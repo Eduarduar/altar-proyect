@@ -1,20 +1,22 @@
 const btnShowChangePass = document.querySelector('.container-button-change-pass button');
 const btnShowAccount = document.querySelector('.container-button-account button');
-const containerAccount = document.querySelector('.configuration');
+const containerAccount = document.querySelector('.settings');
 const containerChangePass = document.querySelector('.change-pass');
 const btnLocks = document.querySelectorAll('.lock');
 const txtPass = document.querySelectorAll("input[type='password']");
-const formAccount = document.querySelector('.configuration-form');
+const formAccount = document.querySelector('.settings-form');
 const formChangePass = document.querySelector('.change-pass-form');
-const inputs = document.querySelectorAll('.configuration-container input');
-const btnSubmitAccount = document.querySelector('.configuration-form button');
+const inputs = document.querySelectorAll('.settings-container input');
+const btnSubmitAccount = document.querySelector('.settings-form button');
 const btnSubmitChangePass = document.querySelector('.change-pass-form button');
-const btnClose = document.querySelector('.configuration-button-exit span');
+const btnClose = document.querySelector('.settings-button-exit span');
+const txtUser = document.getElementById('user');
+const txtEmail = document.getElementById('email');
 
 const expresiones = {
 	usuario: /^[a-zA-Z0-9\_\-]{5,25}$/, // Letras, numeros, guion y guion_bajo
-	password: /^.{0}\w{8,20}$/, // 8 a 30 digitos.
-    passwordS: /^.{0}\w{1,20}$/,
+	password: /^.{0}\w{8,20}$/,  // 8 a 20 digitos.
+    passwordS: /^.{0}\w{1,20}$/, // 1 a 20 digitos
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 }
 
@@ -65,10 +67,12 @@ const validarForm = (e) => {
     switch (e.target.name){
         case 'user':
             account.user = validarCampo(expresiones.usuario, e.target.value, e.target.id);
+            accountChanges();
             break;
         
         case 'email':
             account.email = validarCampo(expresiones.correo, e.target.value, e.target.id);
+            accountChanges();
             break;
         
         case 'pass2':
@@ -112,31 +116,43 @@ const validarCampo = (exprecion, value, campo) => {
 }
 
 const submitAccount = function () {
+    let user = document.getElementById('user');
+    let email = document.getElementById('email');
+    account.user = validarCampo(expresiones.usuario, user.value, user.id);
+    account.email = validarCampo(expresiones.correo, email.value, email.id);
     if (account.user == true && account.email == true){
+        if (txtEmail.value != emailUser || txtUser.value != nameUser)
         formAccount.submit();
-    }else{
-        let user = document.getElementById('user');
-        let email = document.getElementById('email');
-        validarCampo(expresiones.usuario, user.value, user.id);
-        validarCampo(expresiones.correo, email.value, email.id);
     }
 }
 
 const submitChangePass = function () {
+    let passA = document.getElementById('passA');
+    let passN = document.getElementById('pass2');
+    let passC = document.getElementById('pass');
+    changePass.passA = validarCampo(expresiones.password, passA.value, passA.id); 
+    changePass.passN = validarCampo(expresiones.password, passN.value, passN.id); 
+    changePass.passC = validarPassword(passC.id);
     if (changePass.passA == true && changePass.passC == true && changePass.passN == true){
         formChangePass.submit();
-    }else{
-        let passA = document.getElementById('passA');
-        let passN = document.getElementById('pass2');
-        let passC = document.getElementById('pass');
-        validarCampo(expresiones.password, passA.value, passA.id); 
-        validarCampo(expresiones.password, passN.value, passN.id); 
-        validarPassword(passC.id);
     }
 }
 
 const close = function () {
     window.location = '../altar/saves';
+}
+
+const accountChanges = function () {
+    if (txtEmail.value == emailUser && txtUser.value == nameUser){
+        if (formAccount.innerHTML.includes('<button type="button">Save Changes</button>')){
+            btnSubmitAccount.parentNode.removeChild(btnSubmitAccount);
+        }
+    }else{
+        if (!formAccount.innerHTML.includes('<button type="button">Save Changes</button>')){
+            if (account.user == true && account.email == true)
+            document.querySelector('.settings-form').appendChild(btnSubmitAccount);
+        }
+    }
 }
 
 btnLocks.forEach((span) => {
@@ -154,3 +170,8 @@ inputs.forEach((input) => {
 btnSubmitAccount.addEventListener('click', submitAccount);
 btnSubmitChangePass.addEventListener('click', submitChangePass);
 btnClose.addEventListener('click', close);
+
+account.user = validarCampo(expresiones.usuario, document.getElementById('user').value, document.getElementById('user').id);
+account.email = validarCampo(expresiones.correo, document.getElementById('email').value, document.getElementById('email').id);
+
+accountChanges();

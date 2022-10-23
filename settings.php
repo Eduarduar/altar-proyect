@@ -1,19 +1,48 @@
+<?php
+
+    session_start();
+
+    if (!isset($_SESSION['id']) and !isset($_SESSION['user'])){
+        header('location: ./db/logout');
+    }
+
+    include_once './db/queries.php';
+    $consultar = new consultas();
+
+    if (!$consultar->comprobarUserByUserAndId($_SESSION['user'] ,$_SESSION['id'])){
+        header('location: ./db/logout');
+    }
+
+    if (isset($_POST['user']) and isset($_POST['email'])){
+        $consultar->updateUser($_SESSION['id'], $_POST['user'], $_POST['email']);
+        $_SESSION['user'] = $_POST['user'];
+    }
+
+    $datos = $consultar->getDataUser($_SESSION['id']);
+
+    foreach($datos as $registro){
+        $user = $registro['user'];
+        $email = $registro['email'];
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="stylesheet" href="./css/configuration.css">
+        <link rel="stylesheet" href="./css/settings.css">
         <link rel="shortcut icon" href="./img/Calavera_kawaii_dibujo_png.png" type="image/x-icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <title>Configuration</title>
+        <title>settings</title>
     </head>
     <body>
         
-        <div class="configuration-container">
+        <div class="settings-container">
 
-            <div class="configuration-button-exit">
+            <div class="settings-button-exit">
 
                 <span class="material-symbols-outlined">close</span>
 
@@ -32,12 +61,12 @@
 
                 </div>
 
-                <form action="./configuration" method="POST" class="change-pass-form">
+                <form action="./settings" method="POST" class="change-pass-form">
 
                     <div class="form-item">
                         <span id="lock" class="form-item-icon material-symbols-outlined lock">lock</span>
                         <input type="password" name="passA" id="passA" placeholder="Enter your password" required>
-                        <p class="text-invalid">NO Espacios, max 20. min 8.</p>
+                        <p class="text-invalid">NO Espacios, max 20. min 1.</p>
                     </div>
 
                     <div class="form-item">
@@ -69,25 +98,25 @@
             <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
             <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
 
-            <div class="configuration">
+            <div class="settings">
 
-                <div class="configuration-header">
+                <div class="settings-header">
 
-                    <h1>Configuration</h1>
+                    <h1>settings</h1>
 
                 </div>
 
-                <form action="./configuration" method="POST" class="configuration-form">
+                <form action="./settings" method="POST" class="settings-form">
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">person</span>
-                        <input type="text" name="user" id="user" placeholder="Enter your username" required>
+                        <input type="text" name="user" id="user" placeholder="Enter your username" required value="<?php echo $user ?>">
                         <p class="text-invalid">NO Espacios, max 25. min 5.</p>
                     </div>
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">mail</span>
-                        <input type="text" name="email" id="email" placeholder="Enter your email" required>
+                        <input type="text" name="email" id="email" placeholder="Enter your email" required value="<?php echo $email ?>">
                         <p class="text-invalid">Ingresa un correo valido</p>
                     </div>
 
@@ -105,7 +134,15 @@
 
         </div>
 
-        <script src="./js/configuration.js"></script>
+        <script src="./js/Evitar_reemvio.js"></script>
+        <script>
+
+            const nameUser = "<?php echo $user ?>";
+            const emailUser = "<?php echo $email ?>";
+
+        </script>
+        <script src="./js/settings.js"></script>
+        
 
     </body>
 </html>
