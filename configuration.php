@@ -15,7 +15,7 @@
 
             <div class="configuration-button-exit">
 
-                <span id="close" class="material-symbols-outlined">close</span>
+                <span class="material-symbols-outlined">close</span>
 
             </div>
 
@@ -24,7 +24,7 @@
             <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
             <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
 
-            <div class="change-pass">
+            <div class="change-pass hide">
 
                 <div class="change-pass-header">
 
@@ -36,29 +36,29 @@
 
                     <div class="form-item">
                         <span id="lock" class="form-item-icon material-symbols-outlined lock">lock</span>
-                        <input type="password" name="user" id="user" placeholder="Enter your password" required>
-                        <p class="text-invalid">NO Espacios, max 25. min 5.</p>
+                        <input type="password" name="passA" id="passA" placeholder="Enter your password" required>
+                        <p class="text-invalid">NO Espacios, max 20. min 8.</p>
                     </div>
 
                     <div class="form-item">
-                        <span id="lock" class="form-item-icon material-symbols-outlined lock">lock</span>
-                        <input type="password" name="email" id="email" placeholder="New Password" required>
-                        <p class="text-invalid">NO Espacios, max 25. min 5.</p>
+                        <span id="lock2" class="form-item-icon material-symbols-outlined lock">lock</span>
+                        <input type="password" name="pass2" id="pass2" placeholder="New Password" required>
+                        <p class="text-invalid">NO Espacios, max 20. min 8.</p>
                     </div>
 
                     <div class="form-item">
-                        <span id="lock" class="form-item-icon material-symbols-outlined lock">lock</span>
-                        <input type="password" name="email" id="email" placeholder="Confirm your password" required>
-                        <p class="text-invalid">NO Espacios, max 25. min 5.</p>
+                        <span id="lock3" class="form-item-icon material-symbols-outlined lock">lock</span>
+                        <input type="password" name="pass" id="pass" placeholder="Confirm your password" required>
+                        <p class="text-invalid">La contraseña no coinside.</p>
                     </div>
 
                     <button type="button">Confirm</button>
                 
                 </form>
 
-                <div class="container-buttons">
+                <div class="container-button-account">
 
-                    <button>acconut</button>
+                    <button>account</button>
 
                 </div>
 
@@ -69,7 +69,7 @@
             <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
             <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
 
-            <div class="configuration hide">
+            <div class="configuration">
 
                 <div class="configuration-header">
 
@@ -80,22 +80,22 @@
                 <form action="./configuration" method="POST" class="configuration-form">
 
                     <div class="form-item">
-                        <label for="">User Name</label>
+                        <span class="form-item-icon material-symbols-outlined">person</span>
                         <input type="text" name="user" id="user" placeholder="Enter your username" required>
                         <p class="text-invalid">NO Espacios, max 25. min 5.</p>
                     </div>
 
                     <div class="form-item">
-                        <label for="">Email</label>
+                        <span class="form-item-icon material-symbols-outlined">mail</span>
                         <input type="text" name="email" id="email" placeholder="Enter your email" required>
-                        <p class="text-invalid">NO Espacios, max 25. min 5.</p>
+                        <p class="text-invalid">Ingresa un correo valido</p>
                     </div>
 
                     <button type="button">Save Changes</button>
                 
                 </form>
 
-                <div class="container-buttons">
+                <div class="container-button-change-pass">
 
                     <button>Change Password</button>
 
@@ -104,6 +104,8 @@
             </div>
 
         </div>
+
+        <script src="./js/configuration.js"></script>
 
     </body>
 </html>

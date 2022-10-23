@@ -7,8 +7,8 @@ const inputs = document.querySelectorAll('.register-card-form input');
 
 const expresiones = {
 	usuario: /^[a-zA-Z0-9\_\-]{5,25}$/, // Letras, numeros, guion y guion_bajo
-	password: /^.{8,20}$/, // 8 a 30 digitos.
-    passwordS: /^.{0,20}$/,
+	password: /^.{0}\w{8,20}$/, // 8 a 30 digitos.
+    passwordS: /^.{0}\w{1,20}$/,
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 }
 
@@ -65,6 +65,7 @@ const validarForm = (e) => {
 
         case 'pass': 
             registro.passC = validarPassword(e.target.id);
+            break;
     }
 }
 
