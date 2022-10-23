@@ -4,6 +4,49 @@
     include_once 'user_session.php';
 
     class consultas extends DB {
+
+        public function getID ($user, $pass) {
+            $md5 = md5($pass);
+            $query = $this->connect()->prepare("SELECT * FROM users WHERE user = '$user'");
+            $query->execute();
+
+            if ($query->rowCount()){
+                foreach($query as $resultado){
+                    $pass = $resultado['password'];
+                    $id = $resultado['ID'];
+                }
+
+                if (password_verify($md5, $pass)){
+                    return $id;
+                }else{
+                    return false;
+                }
+
+            }else{
+                return false;
+            }
+        }
+
+        public function comprobarPass ($user, $pass) {
+            $md5 = md5($pass);
+            $query = $this->connect()->prepare("SELECT * FROM users WHERE user = '$user'");
+            $query->execute();
+
+            if ($query->rowCount()){
+                foreach($query as $resultado){
+                    $pass = $resultado['password'];
+                }
+
+                if (password_verify($md5, $pass)){
+                    return true;
+                }else{
+                    return false;
+                }
+
+            }else{
+                return false;
+            }
+        }
         
         public function comprobarUser ($user, $email) {
             $query = $this->connect()->prepare("SELECT * FROM users WHERE user = '$user' or email = '$email'");
@@ -26,6 +69,12 @@
             }
         }
 
+        public function updatePass ($pass, $id) {
+            $md5 = md5($pass);
+            $pass = password_hash($md5, PASSWORD_DEFAULT, ['cost' => 10]);
+            $this->connect()->query("UPDATE users SET password = '$pass' WHERE ID = $id");
+        }
+
         public function comprobarUserByUserAndId($user, $id){
             $query = $this->connect()->prepare("SELECT * FROM users WHERE user = '$user' and ID = $id");
             $query->execute();
@@ -43,6 +92,10 @@
 
         public function updateUser($id, $user, $email){
             $this->connect()->query("UPDATE users SET user = '$user', email = '$email' WHERE ID = $id");
+        }
+
+        public function deleteUser($id){
+            $this->connect()->query("DELETE FROM users WHERE ID = $id");
         }
 
         public function getAltaresByUser($id) {

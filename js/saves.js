@@ -13,7 +13,7 @@ const create = function () {
 
 const logout = function () {
     if (deleteMode != true){
-        window.location = '../altar/login';
+        window.location = '../altar/db/logout';
     }
 }
 

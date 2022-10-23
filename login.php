@@ -1,7 +1,24 @@
 <?php
 
+    session_start();
+
     if (isset($_SESSION['id']) and isset($_SESSION['user'])){
     header('location: ./saves');
+    }
+
+    include_once './db/queries.php';
+    $consultar = new consultas();
+
+    $invalid = false;
+
+    if (isset($_POST['user']) and isset($_POST['pass'])){
+        if ($consultar->comprobarPass($_POST['user'], $_POST['pass'])){
+            $_SESSION['id'] = $consultar->getID($_POST['user'], $_POST['pass']);
+            $_SESSION['user'] = $_POST['user'];
+            header('location: ./saves');
+        }else{
+            $invalid = true;
+        }
     }
 
 ?>
@@ -38,10 +55,28 @@
                 <div class="login-card-header">
 
                     <h1>Sign in</h1>
+                    
+                    <?php
+                    
+                        if ($invalid){
+
+                            ?>
+
+                                <div class="login-card-header-error-container">
+
+                                    <p>El usuario o la contraseña son incorrectos</p>
+
+                                </div>
+
+                            <?php
+
+                        }
+                    
+                    ?>
 
                 </div>
 
-                <form action="#" class="login-card-form">
+                <form action="./login" method="POST" class="login-card-form">
 
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined">person</span>
@@ -52,7 +87,7 @@
                     <div class="form-item">
                         <span class="form-item-icon material-symbols-outlined lock">lock</span>
                         <input type="password" name="pass" id="pass" placeholder="Enter your password" required>
-                        <p class="text-invalid">max. 20</p>
+                        <p class="text-invalid">min 1, max. 20</p>
                     </div>
 
                     <button type="button">Sing in</button>

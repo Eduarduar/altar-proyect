@@ -9,13 +9,45 @@
     include_once './db/queries.php';
     $consultar = new consultas();
 
+    $invalid = false;
+
     if (!$consultar->comprobarUserByUserAndId($_SESSION['user'] ,$_SESSION['id'])){
         header('location: ./db/logout');
+    }
+
+    if (isset($_GET['deleteAccount'])){
+        if ($_GET['deleteAccount'] == true){
+            
+            $altares = $consultar->getAltaresByUser($_SESSION['id']);
+
+            foreach ($altares as $registro){
+
+                $images = $consultar->getLocationImages($registro['ID']);
+
+                foreach ($images as $location){
+                    unlink($location['location']);
+                }
+
+            }
+
+            $consultar->deleteUser($_SESSION['id']);
+
+            header('location: ./login');
+
+        }
     }
 
     if (isset($_POST['user']) and isset($_POST['email'])){
         $consultar->updateUser($_SESSION['id'], $_POST['user'], $_POST['email']);
         $_SESSION['user'] = $_POST['user'];
+    }
+    
+    if (isset($_POST['passA']) && isset($_POST['pass2']) && isset($_POST['pass'])){
+        if ($consultar->comprobarPass($_SESSION['user'], $_POST['passA'])){
+            $consultar->updatePass($_POST['pass'], $_SESSION['id']);
+        }else{
+            $invalid = true;
+        }
     }
 
     $datos = $consultar->getDataUser($_SESSION['id']);
@@ -58,6 +90,24 @@
                 <div class="change-pass-header">
 
                     <h1>Change Password</h1>
+                    
+                    <?php
+                    
+                        if ($invalid){
+
+                            ?>
+
+                                <div class="change-pass-header-error-conteiner">
+
+                                    <p>La contraseña es invalida</p>
+
+                                </div>
+
+                            <?php
+
+                        }
+
+                    ?>
 
                 </div>
 
@@ -130,6 +180,12 @@
 
                 </div>
 
+                <div class="container-button-delete-account">
+
+                        <button>Delete account</button>
+
+                </div>
+
             </div>
 
         </div>
@@ -140,8 +196,26 @@
             const nameUser = "<?php echo $user ?>";
             const emailUser = "<?php echo $email ?>";
 
+
         </script>
         <script src="./js/settings.js"></script>
+        <script>
+
+            <?php
+            
+                if ($invalid){
+
+                    ?>
+
+                        showAlternativeSetting();
+
+                    <?php
+
+                }
+                        
+            ?>
+
+        </script>
         
 
     </body>
