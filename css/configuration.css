@@ -1,0 +1,199 @@
+@import url("./reset.css");
+
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@300&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(to top ,rgb(153, 78, 3), rgb(33, 0, 80));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hide {
+    display: none;
+}
+
+.configuration-button-exit {
+  position: absolute;
+  padding: 1rem;
+  z-index: 2;
+}
+
+.configuration-button-exit span {
+  color: #fff;
+  padding: 0.3rem;
+  font-size: 1rem;
+  background: rgba(112, 112, 112, 0.5);
+  border-radius: 100px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.configuration-button-exit span:hover {
+  background: rgba(148, 148, 148, 0.5);
+}
+
+.configuration,
+.change-pass {
+  width: 450px;
+  padding: 4rem;
+  background: rgba(0, 0, 0, 0.509);
+  border-radius: 10px;
+  position: relative;
+  color: #fff;
+}
+
+.configuration::before,
+.change-pass::before {
+  content: '';
+  position: absolute;
+  background: #fff;
+}
+
+.configuration-header,
+.change-pass-header {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.configuration-header h1,
+.change-pass-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: .6rem;
+    user-select: none;
+}
+
+.configuration-header h1 + div,
+.change-pass-header h1 + div {
+    font-size: calc(1rem * .8);
+    opacity: .8;
+}
+
+.configuration-form,
+.change-pass-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.configuration-form .form-item,
+.change-pass-form .form-item {
+    position: relative;
+}
+
+.configuration-form .form-item .form-item-icon,
+.change-pass-form .form-item .form-item-icon {
+    position: absolute;
+    top: 0.82rem;
+    left: 1.4rem;
+    font-size: 1.3rem;
+    user-select: none;
+    opacity: .8;
+}
+
+.configuration input[type="text"],
+.configuration input[type="password"],
+.configuration input[type="email"],
+.change-pass input[type="text"],
+.change-pass input[type="password"],
+.change-pass input[type="email"] {
+    border: none;
+    outline: none;
+    background: rgb(57, 48, 60);
+    padding: 1rem 1.5rem;
+    padding-left: calc(1rem * 2);
+    border-radius: 100px;
+    width: 100%;
+    transition: background .5s;
+    color: #fff;
+}
+
+
+.change-pass input[type="text"],
+.change-pass input[type="password"],
+.change-pass input[type="email"] {
+    padding-left: calc(1rem * 3.5);
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+input[type=number] { 
+    -moz-appearance:textfield;
+}
+
+.configuration input.invalid,
+.change-pass input.invalid {
+    background: rgb(122, 48, 60);
+}
+
+.configuration input.valid,
+.change-pass input.valid {
+    background: rgb(57, 108, 60);
+}
+
+.configuration input:focus,
+.change-pass input:focus {
+    background: rgb(86, 75, 105);
+}
+  
+
+.form-item input + .text-invalid {
+    display: none;
+}
+
+.form-item input.invalid + .text-invalid {
+    display: block;
+    color: rgb(122, 48, 60) !important;
+    font-size: 1rem;
+    margin: 0px;
+    text-align: center;
+}
+
+.container-buttons {
+    margin-top: 10px;
+}
+
+.configuration button,
+.change-pass button {
+  background: rgb(56, 56, 56);
+  border: none;
+  color: #fff;
+  padding: .2rem;
+  font-size: .7rem;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background .3s;
+}
+
+.configuration button:hover,
+.change-pass button:hover {
+    background: rgba(49, 49, 49, 0.7);
+    cursor: pointer;
+}
+
+.configuration-form button,
+.change-pass-form button {
+  background: #000;
+  border: none;
+  color: #fff;
+  padding: .5rem;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: background .3s;
+}
+
+.configuration-form button:hover,
+.change-pass-form button:hover {
+    background: rgba(0, 0, 0, 0.70);
+    cursor: pointer;
+}

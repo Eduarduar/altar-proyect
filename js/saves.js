@@ -2,6 +2,7 @@ const btnAdd = document.getElementById('add');
 const btnLogout = document.querySelector('.header-button-logout-container button');
 const btnArchive = document.querySelectorAll('.save-item[id]');
 const btnDelete = document.querySelector('.header-button-mode-delete-container button');
+const btnConfiguration = document.querySelector('.header-button-configuration button');
 let deleteMode = false;
 
 const create = function () {
@@ -37,6 +38,14 @@ const modeDelete = function () {
 
     }
 }
+
+const confi = function () {
+    if (deleteMode != true){
+        window.location = '../altar/configuration';
+    }
+}
+
+btnConfiguration.addEventListener('click', confi);
 
 btnAdd.addEventListener('click',create);
 
