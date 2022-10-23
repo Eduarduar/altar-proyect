@@ -80,6 +80,10 @@ body {
     gap: 1.5rem;
 }
 
+.change-pass-header-error-conteiner{
+    color: rgb(220, 0, 0);
+}
+
 .settings-form .form-item,
 .change-pass-form .form-item {
     position: relative;
@@ -190,4 +194,8 @@ input[type=number] {
 .change-pass-form button:hover {
     background: rgba(0, 0, 0, 0.70);
     cursor: pointer;
+}
+
+.container-button-delete-account button:hover {
+    background: rgba(133, 1, 1, 0.7);
 }

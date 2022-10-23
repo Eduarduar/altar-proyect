@@ -88,6 +88,10 @@ body {
   opacity: .8;
 }
 
+.register-card-header-error {
+  color: rgb(220, 0, 0);
+}
+
 .register-card-form {
   display: flex;
   flex-direction: column;

@@ -12,6 +12,7 @@ const btnSubmitChangePass = document.querySelector('.change-pass-form button');
 const btnClose = document.querySelector('.settings-button-exit span');
 const txtUser = document.getElementById('user');
 const txtEmail = document.getElementById('email');
+const btnDeleteAccount = document.querySelector('.container-button-delete-account button');
 
 const expresiones = {
 	usuario: /^[a-zA-Z0-9\_\-]{5,25}$/, // Letras, numeros, guion y guion_bajo
@@ -130,7 +131,7 @@ const submitChangePass = function () {
     let passA = document.getElementById('passA');
     let passN = document.getElementById('pass2');
     let passC = document.getElementById('pass');
-    changePass.passA = validarCampo(expresiones.password, passA.value, passA.id); 
+    changePass.passA = validarCampo(expresiones.passwordS, passA.value, passA.id); 
     changePass.passN = validarCampo(expresiones.password, passN.value, passN.id); 
     changePass.passC = validarPassword(passC.id);
     if (changePass.passA == true && changePass.passC == true && changePass.passN == true){
@@ -154,6 +155,12 @@ const accountChanges = function () {
         }
     }
 }
+
+const deleteAccount = function () {
+    window.location = '../altar/settings?deleteAccount=true';
+}
+
+btnDeleteAccount.addEventListener('click', deleteAccount);
 
 btnLocks.forEach((span) => {
     span.addEventListener('click',alternateHidePass); 

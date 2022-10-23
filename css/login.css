@@ -88,6 +88,10 @@ body {
   opacity: .8;
 }
 
+.login-card-header-error-container{
+  color: rgb(220, 0, 0);
+}
+
 .login-card-form {
   display: flex;
   flex-direction: column;
