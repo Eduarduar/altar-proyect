@@ -110,6 +110,7 @@
 
         </div>
 
+        <script src="./js/Evitar_reemvio.js"></script>
         <script src="./js/register.js"></script>
         
     </body>

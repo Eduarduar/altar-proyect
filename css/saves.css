@@ -60,7 +60,7 @@ body::-webkit-scrollbar-thumb {
 
 .header-button-logout-container,
 .header-button-mode-delete-container,
-.header-button-configuration {
+.header-button-settings {
     float: right;
     margin: calc((38px /2));
 }
@@ -69,8 +69,8 @@ body::-webkit-scrollbar-thumb {
 .header-button-logout-container button:focus,
 .header-button-mode-delete-container button,
 .header-button-mode-delete-container button:focus,
-.header-button-configuration button,
-.header-button-configuration button:focus {
+.header-button-settings button,
+.header-button-settings button:focus {
     background: rgb(22, 22, 22);
     color: #fff;
     padding: 5px;
@@ -82,11 +82,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .header-button-mode-delete-container button,
-.header-button-configuration button {
+.header-button-settings button {
     height: 38px;
 }
 .header-button-mode-delete-container button span,
-.header-button-configuration button span {
+.header-button-settings button span {
     font-size: 1.4rem;
     margin: 0;
     padding: 0;
@@ -97,7 +97,7 @@ body::-webkit-scrollbar-thumb {
     background: rgb(70, 6, 6);
 }
 
-.header-button-configuration button:hover {
+.header-button-settings button:hover {
     background: rgb(6, 70, 6);
 }
 

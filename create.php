@@ -2,13 +2,14 @@
 
     session_start();
 
-    include_once './db/queries.php';
-    $consultar = new consultas();
-
+    
     if (!isset($_SESSION['user']) and !isset($_SESSION['id'])){
         header('location: ./db/logout');
     }
-
+    
+    include_once './db/queries.php';
+    $consultar = new consultas();
+    
     if (!$consultar->comprobarUserByUserAndId($_SESSION['user'], $_SESSION['id'])){
         header('location: ./db/logout');
     }
