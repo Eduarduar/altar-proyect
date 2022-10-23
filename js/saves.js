@@ -1,17 +1,41 @@
 const btnAdd = document.getElementById('add');
 const btnLogout = document.querySelector('.header-button-logout-container button');
 const btnArchive = document.querySelectorAll('.save-item[id]');
+const btnDelete = document.querySelector('.header-button-mode-delete-container button');
+let deleteMode = false;
 
 const create = function () {
-    window.location = '../altar/create';
+    if (deleteMode != true){
+        window.location = '../altar/create';
+    }
 }
 
 const logout = function () {
-    window.location = '../altar/login';
+    if (deleteMode != true){
+        window.location = '../altar/login';
+    }
 }
 
 const openArchive = (e) => {
-    window.location = `../altar/create?save=${e.target.id}`;
+    if (deleteMode != true){
+        window.location = `../altar/create?save=${e.target.id}`;
+    }else{
+        window.location = `../altar/saves?delete=${e.target.id}`;
+    }
+}
+
+const modeDelete = function () {
+    if (btnDelete.innerHTML == '<span class="material-symbols-outlined">delete</span>'){
+        btnDelete.innerHTML = '<span class="material-symbols-outlined">close</span>';
+
+        deleteMode = true;
+
+    }else{
+        btnDelete.innerHTML = '<span class="material-symbols-outlined">delete</span>';
+
+        deleteMode = false;
+
+    }
 }
 
 btnAdd.addEventListener('click',create);
@@ -21,3 +45,5 @@ btnLogout.addEventListener('click', logout);
 btnArchive.forEach((div) => {
     div.addEventListener('click', openArchive);
 });
+
+btnDelete.addEventListener('click', modeDelete);

@@ -13,6 +13,23 @@
         header('location: ./db/logout');
     }
 
+    if (isset($_GET['delete'])){
+        if (!$consultar->confirmarAltarById($_GET['delete'], $_SESSION['id'])){
+            header('location: ./saves');
+        }
+
+        $images = $consultar->getLocationImages($_GET['delete']);
+
+        foreach ($images as $location) {
+            unlink($location['location']);
+        }
+
+        $consultar->deleteAltar($_GET['delete']);
+
+        header('location: ./saves');
+
+    }
+
 ?>
 
 
@@ -45,6 +62,12 @@
 
                         <button type="button">Logout</button>
                     
+                    </div>
+
+                    <div class="header-button-mode-delete-container">
+
+                        <button type="button" ><span class="material-symbols-outlined">delete</span></button>
+
                     </div>
 
                 </div>
