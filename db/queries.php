@@ -63,6 +63,14 @@
             return $this->connect()->query("SELECT * FROM text WHERE altar = $id");
         }
 
+        public function getLocationImages($id){
+            return $this->connect()->query("SELECT location FROM images WHERE altar = $id ");
+        }
+
+        public function deleteAltar($id){
+            $this->connect()->query("DELETE FROM altar WHERE ID = $id");
+        }
+
     }
 
 ?>
