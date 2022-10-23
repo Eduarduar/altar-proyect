@@ -70,6 +70,12 @@
 
                     </div>
 
+                    <div class="header-button-configuration">
+
+                        <button type="button"><span class="material-symbols-outlined">settings</span></button>
+
+                    </div>
+
                 </div>
 
             </div>
