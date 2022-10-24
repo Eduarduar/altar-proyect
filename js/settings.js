@@ -160,6 +160,16 @@ const deleteAccount = function () {
     window.location = '../altar/settings?deleteAccount=true';
 }
 
+const keypress = (e) => {
+    if (e.keyCode == 13){
+        if (containerChangePass.classList.value.includes('hide')){
+            submitAccount();
+        }else{
+            submitChangePass();
+        }
+    }
+}
+
 btnDeleteAccount.addEventListener('click', deleteAccount);
 
 btnLocks.forEach((span) => {
@@ -180,5 +190,7 @@ btnClose.addEventListener('click', close);
 
 account.user = validarCampo(expresiones.usuario, document.getElementById('user').value, document.getElementById('user').id);
 account.email = validarCampo(expresiones.correo, document.getElementById('email').value, document.getElementById('email').id);
+
+document.addEventListener('keyup', keypress, false);
 
 accountChanges();

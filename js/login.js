@@ -65,6 +65,11 @@ const validarCampo = (exprecion, value, campo) => {
     }
 }
 
+const keypress = (e) => {
+    if (e.keyCode == 13){ // si preciona la tecla enter
+        submit();
+    }
+}
 
 btnLock.addEventListener('click', alternateHidePass);
 
@@ -76,3 +81,5 @@ inputs.forEach((input) => {
     input.addEventListener('keyup', validarForm);
     input.addEventListener('blur', validarForm);
 });
+
+document.addEventListener('keyup', keypress, false);
