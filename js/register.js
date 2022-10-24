@@ -107,6 +107,12 @@ const submit = function () {
     }
 }
 
+const keypress = (e) => {
+    if (e.keyCode == 13){ // si preciona la tecla enter
+        submit();
+    }
+}
+
 btnLocks.forEach((span) => {
    span.addEventListener('click',alternateHidePass); 
 });
@@ -119,3 +125,5 @@ inputs.forEach((input) => {
 });
 
 btnSubmit.addEventListener('click',submit);
+
+document.addEventListener('keyup', keypress, false);
