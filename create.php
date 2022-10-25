@@ -46,8 +46,13 @@
 
     }
 
-?>
+    if (isset($_GET['medidas'])){
 
+        // conprobar las imagenes y tectos para subirlos a la base de datos
+
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -125,7 +130,7 @@
 
                                             <div class="altar-card-item-text-container">
 
-                                                <textarea name="text" class="text0"></textarea>
+                                                <textarea name="text" class="text0 save"></textarea>
 
                                             </div>
 
@@ -161,9 +166,19 @@
 
                     <div class="clear"></div>
 
-                    <div class="altar-card-item-button-save-container">
+                    <div class="container-buttons">
 
-                        <button type="button" id="save"><span class="material-symbols-outlined">save</span></button>
+                        <div class="altar-card-item-button-view-container">
+
+                            <button type="button" id="view"><span class="material-symbols-outlined">visibility</span></button>
+
+                        </div>
+
+                        <div class="altar-card-item-button-save-container">
+
+                            <button type="button" id="save"><span class="material-symbols-outlined">save</span></button>
+
+                        </div>
 
                     </div>
 
@@ -206,6 +221,7 @@
             }
         
         ?>
+        <script src="./js/saveAltar.js"></script>
         
     </body>
 </html>

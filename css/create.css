@@ -72,6 +72,10 @@ body::-webkit-scrollbar-thumb {
     color: rgb(86, 86, 86);
 }
 
+.altar-card-title-container input.invalid {
+    border: 2px solid rgb(148, 20, 20);
+}
+
 .altar-card-logo,
 .altar-card-header {
     text-align: center;
@@ -172,9 +176,10 @@ body::-webkit-scrollbar-thumb {
     background: rgba(148, 148, 148, 0.5);
 }
 
+.altar-card-item-button-view-container button,
 .altar-card-item-button-save-container button{
-    border: 2px solid rgb(0, 108, 13);
-    background:rgb(8, 155, 6) ;
+    border: 2px solid rgb(0, 108, 96);
+    background:rgb(6, 130, 155) ;
     color: #fff;
     font-size: 1rem;
     font-weight: 300;
@@ -187,6 +192,21 @@ body::-webkit-scrollbar-thumb {
     user-select: none;
 }
 
-.altar-card-item-button-save-container button:hover{
-    background: rgba(8, 155, 6, 0.5);
+
+.altar-card-item-button-save-container button {
+    border: 2px solid rgb(18, 108, 0);
+    background:rgb(6, 155, 23) ;
+}
+
+.altar-card-item-button-save-container button:hover {
+    background: rgba(6, 155, 9, 0.5);
+}
+
+.altar-card-item-button-view-container button:hover{
+    background: rgba(6, 155, 155, 0.5);
+}
+
+.altar-card-item-button-view-container,
+.altar-card-item-button-save-container {
+    display: inline-block;
 }
