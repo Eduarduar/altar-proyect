@@ -21,6 +21,13 @@ body::-webkit-scrollbar-thumb {
     border-radius: 5px;
 }
 
+.hide {
+    padding-top: 30px;
+    max-width: 0px;
+    max-height: 0px;
+    overflow: hidden;
+}
+
 .clear {
     clear: both;
 }
@@ -118,6 +125,10 @@ body::-webkit-scrollbar-thumb {
     user-select: none;
 }
 
+.btnFoto.invalid {
+    border: 4px dashed rgb(148, 20, 20);
+}
+
 .img {
     border: 4px solid #000;
     border-radius: 10px;
@@ -145,6 +156,10 @@ body::-webkit-scrollbar-thumb {
     color: #fff;
     font-size: 1.2rem;
     transition: 0.3s background;
+}
+
+.altar-card-item-text-container textarea.invalid {
+    border: 4px solid rgb(148, 20, 20);
 }
 
 .altar-card-item-text-container textarea:hover {
