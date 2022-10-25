@@ -1,13 +1,18 @@
 //VARIABLES
 const btnClose = document.getElementById('close');
 const btnAdd = document.getElementById('add');
-const btnSave = document.getElementById('save');
+const btnView = document.getElementById('view');
 const txtTitleReference = document.getElementById('title-reference');
 const txtTitle = document.getElementById('title');
+const form = document.querySelector('.altar-card-header');
 let NoItems = 0; // contador de item agregados
 let NoContainers = 0; // contador de contenedores agregados
 let activeAdd = true;
-
+let modeVisibility = false;
+let title = document.querySelector('.altar-card-title-container input');
+let add = document.querySelector('.altar-card-item-button-add-container span');
+const btnSave = document.querySelector('#save');
+let medidas = "";
 //Funciones
 
 const close = function () { // función que regresa a la pagina index
@@ -51,6 +56,7 @@ const addCardItem = function (e = null, save = false, img = null, texto = null, 
         let textarea = document.createElement('textarea'); // textarea
         textarea.setAttribute('class','text');
         textarea.setAttribute('name',`text${NoItems + 1}`);
+        textarea.classList.add('save');
         if (save == true){
             textarea.innerHTML = `${texto}`;
             textarea.setAttribute('style',`width: ${width}; height: ${height}`);
@@ -85,22 +91,42 @@ const addCardItem = function (e = null, save = false, img = null, texto = null, 
     }
 }
 
-const save = function () { // función que elimina los botones para que la pagina quede libre de botones y tambien se encargara de guardar
-    let title = document.querySelector('.altar-card-title-container input');
-    title.parentNode.removeChild(title);
-
-    if (activeAdd != false){
-        let add = document.querySelector('.altar-card-item-button-add-container span');
-        add.parentNode.removeChild(add);
-    }
-
-    let save = document.querySelector('#save');
-    save.parentElement.removeChild(save);
-    
+const view = function () { // función que elimina los botones para que la pagina quede libre de botones y tambien se encargara de guardar
     let textarea = document.querySelectorAll('.altar-card-item-text-container');
-    textarea.forEach((e) => {
-        e.classList.add('active');
-    });
+    if (modeVisibility == false){
+        title.parentNode.removeChild(title);
+
+        if (activeAdd != false){
+            add.parentNode.removeChild(add);
+        }
+
+        textarea.forEach((e) => {
+            e.classList.add('active');
+        });
+
+        modeVisibility = true;
+
+        btnView.innerHTML = '<span class="material-symbols-outlined">visibility_off</span>';
+
+    }else{
+        let titleContainer = document.querySelector('.altar-card-title-container');
+        let addContainer = document.querySelector('.altar-card-item-button-add-container');
+
+        titleContainer.appendChild(title);
+
+        if (activeAdd != false){
+            addContainer.appendChild(add);
+        }
+
+        textarea.forEach((e) =>{
+            e.classList.remove('active');
+        });
+        
+        modeVisibility = false;
+        
+        btnView.innerHTML = '<span class="material-symbols-outlined">visibility</span>';
+
+    }
 }
 
 let vista_preliminar = (event) => { // función que se encarga de mostrar la imagen cargada en su contenedor corresponienten segun el id de su input file
@@ -111,19 +137,47 @@ let vista_preliminar = (event) => { // función que se encarga de mostrar la ima
 
        if (leer_img.readyState == 2){
            
-           id_img.style = `background-color: #fff0;border: none;`;
-           id_img.innerHTML = `<img src='${leer_img.result}'  class="img">`;
+            id_img.style = `background-color: #fff0;border: none;`;
+            id_img.innerHTML = `<img src='${leer_img.result}'  class="img">`;
+            if (imageMin == false){
+                imageMin = true;
+            }
 
        }
 
    }
 
-   leer_img.readAsDataURL(event.target.files[0])
+   leer_img.readAsDataURL(event.target.files[0]);
 
 }
 
 const referenceTitle = (e) => {
     txtTitle.value = e.target.value;
+}
+
+const saveText = function () {
+    const textsArea = document.querySelectorAll('.save');
+    const textTitle = document.getElementById('title-reference');
+
+    if (textTitle.value != ''){
+        textsArea.forEach((textArea) => {
+
+            medidas += `${textArea.offsetWidth}px,${textArea.offsetHeight}px,`;
+        
+        });
+    
+        medidas = medidas.substring(0, medidas.length - 1);
+    
+        form.setAttribute('action', `./create?medidas=${medidas}`);
+    
+        form.submit();
+    }else{
+        textTitle.classList.add('invalid')
+        setTimeout(()=>{
+            textTitle.classList.remove('invalid');
+        }, 2000);
+    }
+
 }
 
 // Listeners
@@ -132,10 +186,12 @@ btnAdd.addEventListener('click', addCardItem);
 
 btnClose.addEventListener('click', close);
 
-btnSave.addEventListener('click', save);
+btnView.addEventListener('click', view);
 
 txtTitleReference.addEventListener('click', referenceTitle);
 
 txtTitleReference.addEventListener('keydown', referenceTitle);
 
 txtTitleReference.addEventListener('keyup', referenceTitle);
+
+btnSave.addEventListener('click',saveText);
