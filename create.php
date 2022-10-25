@@ -24,6 +24,7 @@
         $imagenes = $consultar->getImagenes($_GET['save']);
         $texts = $consultar->getTexts($_GET['save']);
 
+        $idsaves = '';
         $item = [];
 
         foreach ($imagenes as $images){
@@ -38,7 +39,11 @@
                 'height' => $text['height'],
                 'width' => $text['width']
             ];
+
+            $idsaves .= $text['ID'] . ',';
         }
+
+        $idsaves .= $_GET['save'];
 
         foreach ($names as $name){
             $altarName = $name['name'];
@@ -46,9 +51,116 @@
 
     }
 
-    if (isset($_GET['medidas'])){
+    if (!isset($_GET['save']) and isset($_GET['medidas']) and isset($_POST['title'])){
 
-        // conprobar las imagenes y tectos para subirlos a la base de datos
+        if (isset($_GET['update'])){
+            $update = true;
+        }else{
+            $update = false;
+        }
+
+        if (isset($_GET['ids'])){
+            $ids = $_GET['ids'];
+            $ids = explode(',', $ids);
+            $idAltar = array_pop($ids);
+        }
+
+        $NoTitle = 1;
+        $title;
+        if (!$update){
+            if ($consultar->confirmarAltarByName($_POST['title'], $_SESSION['id'])){ // comprobamos que el nombre del altar no exista en los registros ligados al usuario
+                do { // si existe modificamos el nombre para que no coinsida con otro
+                    $title = $_POST['title'] . '('. $NoTitle .')'; 
+                    $NoTitle++;
+                } while ($consultar->confirmarAltarByName($title, $_SESSION['id'])); // hasta que ya no coinsida con otro
+            }else{ // si no existe en el tabla de altares, guardamos el nombre proporcionando
+                $title = $_POST['title'];
+            }
+        }else{
+            $title = $_POST['title'];
+        }
+        
+        $medidas = explode(',',$_GET['medidas']); // guardamos las medidas en un array usando explode
+        $NoMedidas = count($medidas);// optiene la cantidad de medidas guardadas en el array medidas
+        $NoItems = count($medidas) / 2; // optiene la cantidad de medidas ya agrupadas en 2
+        $Medidas = []; // creamos el array donde se guardaran las medidas en grupos de 2
+        $contador = 0; // un contador que nos ayuda a mantener la cuenta en el siguiente ciclo for
+        
+        for($x = -1; $x <= $NoMedidas-2; $x++){ // agrupamos las medidas de 2 en 2 para optener width y height
+            if ($x % 2 != 0){
+                $Medidas += [
+                    $contador => ['width' => $medidas[$x+1]]
+                ];
+            }else{
+                $Medidas[$contador] += ['height' => $medidas[$x+1]];
+                $contador++;
+            }
+        }
+
+        $itemTexts = []; // creamos el array que contenera las propiedades de cada texto
+        
+        // itemText = text, position, width, height
+        if (!$update){
+            for ($x = 0; $x <= $NoItems-1; $x++){ // agrupamos las propiedades de cada texto
+                $itemTexts += [
+                    $x => [
+                        'text' => $_POST['text'. $x],
+                        'position' => $x,
+                        'width' => $Medidas[$x]['width'],
+                        'height' => $Medidas[$x]['height']
+                    ]
+                ];
+            }
+        }else{
+            for ($x = 0; $x <= $NoItems-1; $x++){ // agrupamos las propiedades de cada texto
+                $itemTexts += [
+                    $x => [
+                        'text' => $_POST['text'. $x],
+                        'id' => $ids[$x],
+                        'width' => $Medidas[$x]['width'],
+                        'height' => $Medidas[$x]['height']
+                    ]
+                ];
+            }
+        }
+
+        function uploadImages($consultar ,$nameImage, $idAltar, $position){
+            $directorio = 'img/imagenes/';
+            $nameRandom = substr( md5(microtime()), 1 , 15); // generamos nombre aleatorio
+            $explode = explode('.', $_FILES[$nameImage]['name']); // sacamos el nombre con extencion
+            $extencion = array_pop($explode); // sacamos extencion
+            $newName = $nameRandom . '.' . $extencion; // agregamos el nuevo nombre con la extencion optenida
+            $nameFull = './' . $directorio . $newName; // agregamos la dirección completa con el nuevo nombre
+            if (move_uploaded_file($_FILES[$nameImage]['tmp_name'], $nameFull)){  // subimos el archivo con el nuevo nombre                
+                $consultar->setImageAltar($nameFull, $idAltar, $position); // registramos la dirección de la imagen en la base de datos
+            }
+        }
+
+        if (!$update){   
+            $consultar->setAltar($title, $_SESSION['id']); // generamos un nuevo registro de altar
+            $idAltar = $consultar->getIdAltar($title, $_SESSION['id']); // optenemos el id del altar que acabamos de registrar
+            foreach($itemTexts as $itemText){ // insertamos todos los texto relacionandolos con el altar que acabamos de crear
+                $consultar->setTextAltar($itemText['text'], $idAltar, $itemText['position'], $itemText['height'], $itemText['width']);
+            }
+        }else{
+            foreach($itemTexts as $itemText){ // insertamos todos los texto relacionandolos con el altar que acabamos de crear
+                $consultar->updateTextAltar($itemText['id'], $itemText['text'], $itemText['height'], $itemText['width']);
+            }
+        }
+
+        if (!$update){
+            for($x = 0; $x <= 6; $x++){
+                if (isset($_FILES['imagen'.$x])){
+                    uploadImages($consultar, 'imagen'.$x, $idAltar, $x);
+                }else{
+                    continue;
+                }
+            }
+        }else{
+            $consultar->updateTitleAltar($idAltar, $title);
+        }
+
+        header('location: ./saves');
 
     }
 
@@ -96,65 +208,27 @@
 
                 <form method="POST" enctype="multipart/form-data" id="header" class="altar-card-header">
 
-                    <div class="hide" style="display:none;">  <!-- este contenedor contiene todos los inputs file para evitar que moleste a la vista y se puedan cargar las imagenes -->
+                    <div class="hide">  <!-- este contenedor contiene todos los inputs file para evitar que moleste a la vista y se puedan cargar las imagenes -->
 
                         <input type="text" name="title" id="title" <?php if (isset($_GET['save'])){
                             echo 'value="'. $altarName .'"';
                         } ?>>
 
-                        <?php if (!isset($_GET['save'])){
+                        <!-- <?php if (!isset($_GET['save'])){
 
                             ?>
 
-                                <input type="file" name="imagen0" id="imagen0" onchange="vista_preliminar(event);">
-
                             <?php
 
-                        }?>
+                        }?> -->
 
                     </div>
 
                     <div id="containers">
 
-                        <?php
-                        
-                            if (!isset($_GET['save'])){
+                        <div class="altar-card-item-container">                
 
-                                ?>
-                                
-                                    <div class="altar-card-item-container">
-
-                                        <div class="altar-card-item">
-
-                                            <button type="button" class="btnFoto" id="img-foto-imagen0"><label for="imagen0">Add photo</label></button>
-
-                                            <div class="altar-card-item-text-container">
-
-                                                <textarea name="text" class="text0 save"></textarea>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                
-                                <?php
-
-                            }else{
-
-                                ?>
-
-                                    <div class="altar-card-item-container">
-
-                                        
-
-                                    </div>
-
-                                <?php
-
-                            }
-
-                        ?>
+                        </div>
 
                     </div>
 
@@ -187,7 +261,7 @@
             </div>
 
         </div>
-
+        
         <script src="./js/create.js"></script>
         <?php
         
@@ -197,8 +271,9 @@
                 
                     <script>
 
-                        NoItems = -1;
-                        NoContainers = 0;
+                        onSave = true;
+
+                        ids = '<?php echo $idsaves; ?>';
 
                         <?php
                         
@@ -213,6 +288,9 @@
                             }
                         
                         ?>
+
+                        NoItems = 6;
+                        addCardItem();
 
                     </script>
 

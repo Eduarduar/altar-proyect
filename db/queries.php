@@ -132,6 +132,46 @@
             $this->connect()->query("DELETE FROM altar WHERE ID = $id");
         }
 
+        public function setAltar($name, $IdUser){
+            $this->connect()->query("INSERT INTO altar VALUES(NULL, '$name' ,$IdUser)");
+        }
+
+        public function getIdAltar($name, $idUser){
+            $query = $this->connect()->prepare("SELECT ID FROM altar WHERE name = '$name' AND user = $idUser");
+            $query->execute();
+
+            foreach($query as $id){
+                return $id['ID'];
+            }
+
+        }
+
+        public function confirmarAltarByName($name, $idUser){
+            $query = $this->connect()->prepare("SELECT * FROM altar WHERE name = '$name' AND user = $idUser");
+            $query->execute();
+            if ($query->rowCount()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function setTextAltar($text, $idAltar, $position, $height, $width){
+             $this->connect()->query("INSERT INTO text VALUES (NULL, '$text', $idAltar, $position, '$height', '$width')");
+        }
+
+        public function setImageAltar($location, $idAltar, $position){
+            $this->connect()->query("INSERT INTO images VALUES (NULL, '$location', $idAltar, $position)");
+        }
+
+        public function updateTextAltar($id, $text, $height, $width){
+            $this->connect()->query("UPDATE text SET text = '$text', height = '$height', width = '$width' WHERE ID = $id");
+        }
+
+        public function updateTitleAltar($id, $title){
+            $this->connect()->query("UPDATE altar SET name = '$title' WHERE ID = $id");
+        }
+
     }
 
 ?>

@@ -5,7 +5,7 @@ const btnView = document.getElementById('view');
 const txtTitleReference = document.getElementById('title-reference');
 const txtTitle = document.getElementById('title');
 const form = document.querySelector('.altar-card-header');
-let NoItems = 0; // contador de item agregados
+let NoItems = -1; // contador de item agregados
 let NoContainers = 0; // contador de contenedores agregados
 let activeAdd = true;
 let modeVisibility = false;
@@ -13,6 +13,38 @@ let title = document.querySelector('.altar-card-title-container input');
 let add = document.querySelector('.altar-card-item-button-add-container span');
 const btnSave = document.querySelector('#save');
 let medidas = "";
+let onSave = false;
+let ids;
+
+const createItems = { // itemas creados
+    item0: false,
+    item1: false,
+    item2: false,
+    item3: false,
+    item4: false,
+    item5: false,
+    item6: false
+}
+
+const textsareasFull = { // textareas con texto
+    text0: false,
+    text1: false,
+    text2: false,
+    text3: false,
+    text4: false,
+    text5: false,
+    text6: false
+}
+
+const imagesLoads = { // imagenes cargadas
+    image0: false,
+    image1: false,
+    image2: false,
+    image3: false,
+    image4: false,
+    image5: false,
+    image6: false
+}
 //Funciones
 
 const close = function () { // función que regresa a la pagina index
@@ -82,12 +114,40 @@ const addCardItem = function (e = null, save = false, img = null, texto = null, 
             NoItems++;
         }
 
-        if (NoItems == 6){
+        if (NoItems >= 6){
             let add = document.querySelector('.altar-card-item-button-add-container span');
             add.parentNode.removeChild(add);
             activeAdd = false;
         }
 
+        switch (NoItems) {
+            case 0:
+                createItems.item0 = true;
+            break;
+            case 1:
+                createItems.item1 = true;
+            break;
+            case 2:
+                createItems.item2 = true;
+            break;
+            case 3:
+                createItems.item3 = true;
+            break;
+            case 4:
+                createItems.item4 = true;
+            break;
+            case 5:
+                createItems.item5 = true;
+            break;
+            case 6:
+                createItems.item6 = true;
+            break;
+        }
+
+    }else{
+        let add = document.querySelector('.altar-card-item-button-add-container span');
+        add.parentNode.removeChild(add);
+        activeAdd = false;
     }
 }
 
@@ -139,15 +199,36 @@ let vista_preliminar = (event) => { // función que se encarga de mostrar la ima
            
             id_img.style = `background-color: #fff0;border: none;`;
             id_img.innerHTML = `<img src='${leer_img.result}'  class="img">`;
-            if (imageMin == false){
-                imageMin = true;
-            }
 
        }
 
    }
 
    leer_img.readAsDataURL(event.target.files[0]);
+
+    switch (id_img.id) {
+        case 'img-foto-imagen0':
+            imagesLoads.image0 = true;
+        break;
+        case 'img-foto-imagen1':
+            imagesLoads.image1 = true;
+        break;
+        case 'img-foto-imagen2':
+            imagesLoads.image2 = true;
+        break;
+        case 'img-foto-imagen3':
+            imagesLoads.image3 = true;
+        break;
+        case 'img-foto-imagen4':
+            imagesLoads.image4 = true;
+        break;
+        case 'img-foto-imagen5':
+            imagesLoads.image5 = true;
+        break;
+        case 'img-foto-imagen6':
+            imagesLoads.image6 = true;
+        break;
+    }
 
 }
 
@@ -158,8 +239,211 @@ const referenceTitle = (e) => {
 const saveText = function () {
     const textsArea = document.querySelectorAll('.save');
     const textTitle = document.getElementById('title-reference');
+    let fullImagen = true;
+    let validTitle = false;
+    let validTexts = true;
 
-    if (textTitle.value != ''){
+    
+    if (textTitle.value == ''){
+        textTitle.classList.add('invalid')
+        setTimeout(()=>{
+            textTitle.classList.remove('invalid');
+        }, 2000);
+    }else{
+        validTitle = true;
+    }
+
+    textsArea.forEach((textArea)=>{
+        switch(textArea.name){
+            case 'text0':
+                if (textArea.value == ''){
+                    invalidTextArea(textArea);
+                }
+            break;
+            case 'text1':
+                if (textArea.value == ''){
+                    invalidTextArea(textArea);
+                }
+            break;
+            case 'text2':
+                if (textArea.value == ''){
+                    invalidTextArea(textArea);
+                }
+            break;
+            case 'text3':
+                if (textArea.value == ''){
+                    invalidTextArea(textArea);
+                }
+            break;
+            case 'text4':
+                if (textArea.value == ''){
+                    invalidTextArea(textArea);
+                }
+            break;
+            case 'text5':
+                if (textArea.value == ''){
+                    invalidTextArea(textArea);
+                }
+            break;
+            case 'text6':
+                if (textArea.value == ''){
+                    invalidTextArea(textArea);
+                }
+            break;
+        }
+
+        if (validTexts == true)
+            switch(textArea.name){
+                case 'text0':
+                    if (textArea.value != ''){
+                        validTexts = true;
+                    }else{
+                        validTexts = false;
+                    }
+                break;
+                case 'text1':
+                    if (textArea.value != ''){
+                        validTexts = true;
+                    }else{
+                        validTexts = false;
+                    }
+                break;
+                case 'text2':
+                    if (textArea.value != ''){
+                        validTexts = true;
+                    }else{
+                        validTexts = false;
+                    }
+                break;
+                case 'text3':
+                    if (textArea.value != ''){
+                        validTexts = true;
+                    }else{
+                        validTexts = false;
+                    }
+                break;
+                case 'text4':
+                    if (textArea.value != ''){
+                        validTexts = true;
+                    }else{
+                        validTexts = false;
+                    }
+                break;
+                case 'text5':
+                    if (textArea.value != ''){
+                        validTexts = true;
+                    }else{
+                        validTexts = false;
+                    }
+                break;
+                case 'text6':
+                    if (textArea.value != ''){
+                        validTexts = true;
+                    }else{
+                        validTexts = false;
+                    }
+                break;
+        
+            }
+        
+    });
+
+    if (!onSave){
+        for(let x = 0; x <= NoItems; x++){     
+                switch (x){
+                    case 0:
+                        if (imagesLoads.image0 != true){
+                            invalidBottons(x);
+                        }
+                    break;
+                    case 1:
+                        if (imagesLoads.image1 != true){
+                            invalidBottons(x);
+                        }
+                    break;
+                    case 2:
+                        if (imagesLoads.image2 != true){
+                            invalidBottons(x);
+                        }
+                    break;
+                    case 3:
+                        if (imagesLoads.image3 != true){
+                            invalidBottons(x);
+                        }
+                    break;
+                    case 4:
+                        if (imagesLoads.image4 != true){
+                            invalidBottons(x);
+                        }
+                    break;
+                    case 5:
+                        if (imagesLoads.image5 != true){
+                            invalidBottons(x);
+                        }
+                    break;
+                    case 6:
+                        if (imagesLoads.image6 != true){
+                            invalidBottons(x);
+                        }
+                    break;
+            }
+            
+            if (fullImagen == true)
+                switch (x){
+                    case 0:
+                        if (imagesLoads.image0 != true){
+                            fullImagen = false;
+                        }else{
+                            fullImagen = true;
+                        }
+                    break;
+                    case 1:
+                        if (imagesLoads.image1 != true){
+                            fullImagen = false;
+                        }else{
+                            fullImagen = true;
+                        }
+                    break;
+                    case 2:
+                        if (imagesLoads.image2 != true){
+                            fullImagen = false;
+                        }else{
+                            fullImagen = true;
+                        }
+                    break;
+                    case 3:
+                        if (imagesLoads.image3 != true){
+                            fullImagen = false;
+                        }else{
+                            fullImagen = true;
+                        }
+                    break;
+                    case 4:
+                        if (imagesLoads.image4 != true){
+                            fullImagen = false;
+                        }else{
+                            fullImagen = true;
+                        }
+                    break;
+                    case 5:
+                        if (imagesLoads.image5 != true){
+                            fullImagen = false;
+                        }else{
+                            fullImagen = true;
+                        }
+                    break;
+                    case 6:
+                        if (imagesLoads.image6 != true){
+                            fullImagen = false;
+                        }else{
+                            fullImagen = true;
+                        }
+                    break;
+                }
+        }
+    }
+    
+    if (fullImagen == true && validTexts == true && validTitle == true){
         textsArea.forEach((textArea) => {
 
             medidas += `${textArea.offsetWidth}px,${textArea.offsetHeight}px,`;
@@ -168,16 +452,29 @@ const saveText = function () {
     
         medidas = medidas.substring(0, medidas.length - 1);
     
-        form.setAttribute('action', `./create?medidas=${medidas}`);
-    
+        if (!onSave){
+            form.setAttribute('action', `./create?medidas=${medidas}`);
+        }else{
+            form.setAttribute('action', `./create?medidas=${medidas}&update=${onSave}&ids=${ids}`);
+        }
         form.submit();
-    }else{
-        textTitle.classList.add('invalid')
-        setTimeout(()=>{
-            textTitle.classList.remove('invalid');
-        }, 2000);
+    
     }
 
+}
+
+const invalidBottons = function (x) {
+    document.getElementById(`img-foto-imagen${x}`).classList.add('invalid');
+    setTimeout(()=>{
+        document.getElementById(`img-foto-imagen${x}`).classList.remove('invalid');
+    }, 2000);
+}
+
+const invalidTextArea = function (element) {
+    element.classList.add('invalid');
+    setTimeout(()=>{
+        element.classList.remove('invalid');
+    }, 2000);
 }
 
 // Listeners
