@@ -242,12 +242,6 @@
 
                     <div class="container-buttons">
 
-                        <div class="altar-card-item-button-view-container">
-
-                            <button type="button" id="view"><span class="material-symbols-outlined">visibility</span></button>
-
-                        </div>
-
                         <div class="altar-card-item-button-save-container">
 
                             <button type="button" id="save"><span class="material-symbols-outlined">save</span></button>
@@ -257,6 +251,16 @@
                     </div>
 
                 </form>
+
+            </div>
+
+            <div class="container-buttons">
+
+                <div class="altar-card-item-button-view-container">
+
+                    <button type="button" id="view"><span class="material-symbols-outlined">visibility</span></button>
+
+                </div>
 
             </div>
 

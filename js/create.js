@@ -89,6 +89,8 @@ const addCardItem = function (e = null, save = false, img = null, texto = null, 
         textarea.setAttribute('class','text');
         textarea.setAttribute('name',`text${NoItems + 1}`);
         textarea.classList.add('save');
+        textarea.setAttribute('onkeypress','autoSize(this)');
+        textarea.setAttribute('onkeyup','autoSize(this)');
         if (save == true){
             textarea.innerHTML = `${texto}`;
             textarea.setAttribute('style',`width: ${width}; height: ${height}`);
@@ -152,16 +154,23 @@ const addCardItem = function (e = null, save = false, img = null, texto = null, 
 }
 
 const view = function () { // función que elimina los botones para que la pagina quede libre de botones y tambien se encargara de guardar
-    let textarea = document.querySelectorAll('.altar-card-item-text-container');
+    let textareaContainer = document.querySelectorAll('.altar-card-item-text-container');
+    let textarea = document.querySelectorAll('.altar-card-item-text-container textarea');
+
     if (modeVisibility == false){
         title.parentNode.removeChild(title);
+        btnSave.parentNode.removeChild(btnSave);
 
         if (activeAdd != false){
             add.parentNode.removeChild(add);
         }
 
-        textarea.forEach((e) => {
+        textareaContainer.forEach((e) => {
             e.classList.add('active');
+        });
+
+        textarea.forEach((e)=>{
+            autoSize(e);
         });
 
         modeVisibility = true;
@@ -171,14 +180,16 @@ const view = function () { // función que elimina los botones para que la pagin
     }else{
         let titleContainer = document.querySelector('.altar-card-title-container');
         let addContainer = document.querySelector('.altar-card-item-button-add-container');
+        let btnSaveContainer = document.querySelector('.altar-card-item-button-save-container');
 
         titleContainer.appendChild(title);
+        btnSaveContainer.appendChild(btnSave);
 
         if (activeAdd != false){
             addContainer.appendChild(add);
         }
 
-        textarea.forEach((e) =>{
+        textareaContainer.forEach((e) =>{
             e.classList.remove('active');
         });
         
@@ -475,6 +486,11 @@ const invalidTextArea = function (element) {
     setTimeout(()=>{
         element.classList.remove('invalid');
     }, 2000);
+}
+
+const autoSize = function(element){
+    element.style.height = '42px';
+    element.style.height = (8+element.scrollHeight) + 'px';
 }
 
 // Listeners
