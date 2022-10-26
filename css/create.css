@@ -65,6 +65,7 @@ body::-webkit-scrollbar-thumb {
 .altar-card-title-container {
     text-align: center;
     margin-bottom: 10px;
+    height: 30px;
 }
 
 .altar-card-title-container input{
@@ -146,8 +147,8 @@ body::-webkit-scrollbar-thumb {
     padding: 0.3rem;
     min-width: 250px;
     max-width: 500px;
-    min-height: 30px;
-    max-height: 320px;
+    min-height: 42px;
+    max-height: 580px;
     background: rgb(34, 34, 34);
     border-radius: 10px;
     border: 4px solid #000;
@@ -156,6 +157,16 @@ body::-webkit-scrollbar-thumb {
     color: #fff;
     font-size: 1.2rem;
     transition: 0.3s background;
+}
+
+.altar-card-item-text-container textarea::-webkit-scrollbar {
+    width: 10px;
+    background: rgb(43, 2, 76);
+}
+
+.altar-card-item-text-container textarea::-webkit-scrollbar-thumb {
+    background: rgb(53, 46, 135);
+    border-radius: 5px;
 }
 
 .altar-card-item-text-container textarea.invalid {
@@ -171,9 +182,13 @@ body::-webkit-scrollbar-thumb {
     box-shadow: 0 0px 0px rgb(0, 0, 0)inset, 0 0 0px rgb(0, 0, 0);
     background: #0000;
     outline: 0 none;
-    margin-bottom: 8px;
+    padding: calc(0.3rem + 4px);
     resize: none;
     user-select: none;
+}
+
+.container-buttons {
+    text-align: center;
 }
 
 .altar-card-item-button-add-container span {
