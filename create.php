@@ -1,16 +1,17 @@
 <?php
 
     session_start();
+    
 
     
-    if (!isset($_SESSION['user']) and !isset($_SESSION['id'])){
+    if (!isset($_SESSION['user']) and !isset($_SESSION['id'])){ // comprobamos que tenga una sessión iniciada
         header('location: ./db/logout');
     }
     
     include_once './db/queries.php';
     $consultar = new consultas();
     
-    if (!$consultar->comprobarUserByUserAndId($_SESSION['user'], $_SESSION['id'])){
+    if (!$consultar->comprobarUserByUserAndId($_SESSION['user'], $_SESSION['id'])){ // y comprobamos que su usuario si exista en la base de datos
         header('location: ./db/logout');
     }
 

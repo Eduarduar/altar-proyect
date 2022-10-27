@@ -15,6 +15,8 @@ const btnSave = document.querySelector('#save');
 let medidas = "";
 let onSave = false;
 let ids;
+var labelsContainer;
+var labels;
 
 const createItems = { // itemas creados
     item0: false,
@@ -158,11 +160,25 @@ const view = function () { // función que elimina los botones para que la pagin
     let textarea = document.querySelectorAll('.altar-card-item-text-container textarea');
 
     if (modeVisibility == false){
+
+        if (!onSave){
+            labelsContainer = document.querySelectorAll('.btnFoto');
+            labels = document.querySelectorAll('.btnFoto label');
+        }
+
         title.parentNode.removeChild(title);
         btnSave.parentNode.removeChild(btnSave);
 
+        btnClose.parentNode.removeChild(btnClose);
+
         if (activeAdd != false){
             add.parentNode.removeChild(add);
+        }
+
+        if (!onSave){
+            labels.forEach((e)=>{
+                e.parentElement.removeChild(e);
+            });
         }
 
         textareaContainer.forEach((e) => {
@@ -179,14 +195,25 @@ const view = function () { // función que elimina los botones para que la pagin
 
     }else{
         let titleContainer = document.querySelector('.altar-card-title-container');
+        let closeContainer = document.querySelector('.altar-card-button-exit');
         let addContainer = document.querySelector('.altar-card-item-button-add-container');
         let btnSaveContainer = document.querySelector('.altar-card-item-button-save-container');
+        let contador = 0;
 
         titleContainer.appendChild(title);
         btnSaveContainer.appendChild(btnSave);
 
+        closeContainer.appendChild(btnClose);
+
         if (activeAdd != false){
             addContainer.appendChild(add);
+        }
+
+        if (!onSave){
+            labelsContainer.forEach((e)=>{
+                e.appendChild(labels[contador]);
+                contador++;
+            });
         }
 
         textareaContainer.forEach((e) =>{
@@ -203,43 +230,56 @@ const view = function () { // función que elimina los botones para que la pagin
 let vista_preliminar = (event) => { // función que se encarga de mostrar la imagen cargada en su contenedor corresponienten segun el id de su input file
     let leer_img = new FileReader();
     let id_img = document.getElementById(`img-foto-${event.target.id}`);
+    let _URL = window.URL || window.webkitURL;
+    let img = new Image();
+    img.src = _URL.createObjectURL(event.target.files[0]);
 
-    leer_img.onload = () => {
+    img.onload = function () {
 
-       if (leer_img.readyState == 2){
-           
-            id_img.style = `background-color: #fff0;border: none;`;
-            id_img.innerHTML = `<img src='${leer_img.result}'  class="img">`;
+        if (leer_img.readyState == 2){
 
-       }
+            if(id_img.innerHTML.includes('<img src=')){
 
-   }
+                let imgAnterior = document.querySelector(`#img-foto-${event.target.id} img`);
+                imgAnterior.parentNode.removeChild(imgAnterior);
+                id_img.innerHTML += `<img src='${leer_img.result}'  class="img">`;
+            
+            }else{
+                let label = document.querySelector(`#img-foto-${event.target.id}  label`);
+                label.innerHTML = 'change image';
+                id_img.style = `background-color: #fff0;border: none;`;
+                id_img.innerHTML += `<img src='${leer_img.result}'  class="img">`;
+            }
 
-   leer_img.readAsDataURL(event.target.files[0]);
+        }        
 
-    switch (id_img.id) {
-        case 'img-foto-imagen0':
-            imagesLoads.image0 = true;
-        break;
-        case 'img-foto-imagen1':
-            imagesLoads.image1 = true;
-        break;
-        case 'img-foto-imagen2':
-            imagesLoads.image2 = true;
-        break;
-        case 'img-foto-imagen3':
-            imagesLoads.image3 = true;
-        break;
-        case 'img-foto-imagen4':
-            imagesLoads.image4 = true;
-        break;
-        case 'img-foto-imagen5':
-            imagesLoads.image5 = true;
-        break;
-        case 'img-foto-imagen6':
-            imagesLoads.image6 = true;
-        break;
+        switch (id_img.id) {
+            case 'img-foto-imagen0':
+                imagesLoads.image0 = true;
+            break;
+            case 'img-foto-imagen1':
+                imagesLoads.image1 = true;
+            break;
+            case 'img-foto-imagen2':
+                imagesLoads.image2 = true;
+            break;
+            case 'img-foto-imagen3':
+                imagesLoads.image3 = true;
+            break;
+            case 'img-foto-imagen4':
+                imagesLoads.image4 = true;
+            break;
+            case 'img-foto-imagen5':
+                imagesLoads.image5 = true;
+            break;
+            case 'img-foto-imagen6':
+                imagesLoads.image6 = true;
+            break;
+            
+        }
     }
+
+    leer_img.readAsDataURL(event.target.files[0]);
 
 }
 
@@ -256,10 +296,11 @@ const saveText = function () {
 
     
     if (textTitle.value == ''){
-        textTitle.classList.add('invalid')
+        textTitle.classList.add('invalid');
         setTimeout(()=>{
             textTitle.classList.remove('invalid');
         }, 2000);
+        validTitle = false;
     }else{
         validTitle = true;
     }
@@ -481,10 +522,10 @@ const invalidBottons = function (x) {
     }, 2000);
 }
 
-const invalidTextArea = function (element) {
-    element.classList.add('invalid');
+const invalidTextArea = function (x) {
+    x.classList.add('invalid');
     setTimeout(()=>{
-        element.classList.remove('invalid');
+        x.classList.remove('invalid');
     }, 2000);
 }
 
