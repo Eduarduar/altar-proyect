@@ -157,7 +157,9 @@ const accountChanges = function () {
 }
 
 const deleteAccount = function () {
-    window.location = '../altar/settings?deleteAccount=true';
+    if (confirm('Esta seguro de querer eliminar la cuenta?')){
+        window.location = '../altar/settings?deleteAccount=true';
+    }
 }
 
 const keypress = (e) => {
